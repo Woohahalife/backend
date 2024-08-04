@@ -35,12 +35,4 @@ public final class ResultResponse<T> {
                 errorCode.name(),
                 null);
     }
-
-    public static <T> ResultResponse<T> failure(ErrorCode errorCode, String message) {
-        return new ResultResponse<>(
-                errorCode.getStatusCode(),
-                message,
-                errorCode.name(),
-                null);
-    }
 }
