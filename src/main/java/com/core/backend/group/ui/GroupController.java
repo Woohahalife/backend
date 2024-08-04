@@ -1,6 +1,6 @@
 package com.core.backend.group.ui;
 
-import com.core.backend.common.mock.MockData;
+import com.core.backend.common.mock.GetAllGroupMockData;
 import com.core.backend.common.repsonse.ResultResponse;
 import com.core.backend.group.ui.dto.GroupInfoResponse;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class GroupController {
     @GetMapping("/groups")
     public ResultResponse<List<GroupInfoResponse>> getAllGroup() {
 
-        List<GroupInfoResponse> responses = MockData.getAllGroupMockData();
+        List<GroupInfoResponse> responses = GetAllGroupMockData.MockData();
 
         return ResultResponse.success(responses);
     }

@@ -5,9 +5,9 @@ import com.core.backend.group.ui.dto.GroupInfoResponse;
 import java.time.LocalDate;
 import java.util.List;
 
-public class MockData {
+public class GetAllGroupMockData {
 
-    public static List<GroupInfoResponse> getAllGroupMockData() {
+    public static List<GroupInfoResponse> MockData() {
         GroupInfoResponse response1 = new GroupInfoResponse(
                 1L, "HNRC", LocalDate.of(2024, 5, 12), 5, false
         );
