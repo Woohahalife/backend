@@ -10,10 +10,9 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@JsonPropertyOrder({"isSuccess", "statusCode", "message", "status", "data"})
+@JsonPropertyOrder({"statusCode", "message", "status", "data"})
 public final class ResultResponse<T> {
 
-    private Boolean isSuccess;
     private int statusCode;
     private String message;
     private String status;
@@ -23,7 +22,6 @@ public final class ResultResponse<T> {
 
     public static <T> ResultResponse<T> success(T data) {
         return new ResultResponse<>(
-                true,
                 HttpStatus.OK.value(),
                 "요청이 성공적으로 처리되었습니다.",
                 HttpStatus.OK.name(),
@@ -32,7 +30,6 @@ public final class ResultResponse<T> {
 
     public static <T> ResultResponse<T> failure(ErrorCode errorCode) {
         return new ResultResponse<>(
-                errorCode.isSuccess(),
                 errorCode.getStatusCode(),
                 errorCode.getMessage(),
                 errorCode.name(),
@@ -41,7 +38,6 @@ public final class ResultResponse<T> {
 
     public static <T> ResultResponse<T> failure(ErrorCode errorCode, String message) {
         return new ResultResponse<>(
-                errorCode.isSuccess(),
                 errorCode.getStatusCode(),
                 message,
                 errorCode.name(),
