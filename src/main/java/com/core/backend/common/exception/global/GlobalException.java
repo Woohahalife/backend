@@ -12,12 +12,4 @@ public class GlobalException extends DefaultException {
     public GlobalException(ErrorCode errorCode, Throwable cause) {
         super(errorCode, cause);
     }
-
-    public GlobalException(ErrorCode errorCode, String customMessage) {
-        super(errorCode, customMessage);
-    }
-
-    public GlobalException(ErrorCode errorCode, String customMessage, Throwable cause) {
-        super(errorCode, customMessage, cause);
-    }
 }

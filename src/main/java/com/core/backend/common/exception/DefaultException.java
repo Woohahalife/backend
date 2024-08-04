@@ -16,14 +16,4 @@ public abstract class DefaultException extends RuntimeException {
         super(errorCode.getMessage(), cause);
         this.errorCode = errorCode;
     }
-
-    protected DefaultException(ErrorCode errorCode, String customMessage) {
-        super(customMessage);
-        this.errorCode = errorCode;
-    }
-
-    protected DefaultException(ErrorCode errorCode, String customMessage, Throwable cause) {
-        super(customMessage, cause);
-        this.errorCode = errorCode;
-    }
 }
