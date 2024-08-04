@@ -11,17 +11,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(DefaultException.class)
-    public ResponseEntity<ResultResponse<Object>> testExceptionHandler(DefaultException e) {
-        log.error("[Exception] message: {} kind: {}", e.getMessage(), e.getClass().getSimpleName());
+    public ResponseEntity<ResultResponse<Object>> DefaultExceptionHandler(DefaultException e) {
+        log.error("[Exception] status: {} message: {} kind: {}",e.getErrorCode().getHttpStatus(), e.getMessage(), e.getClass().getSimpleName());
 
-        return ResponseEntity.status(e.getErrorCode().getStatusCode()).body(ResultResponse.failure(e.getErrorCode()));
+        return ResponseEntity.status(e.getErrorCode().getStatusCode())
+                .body(ResultResponse.failure(e.getErrorCode()));
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleException(Exception e) {
-
+    public ResponseEntity<Object> UnExpectedExceptionHandler(Exception e) {
         log.error("[INTERNAL_SERVER_ERROR]", e);
+
         return ResponseEntity.status(ErrorCode.INTERNAL_SERVER_ERROR.getStatusCode())
-                .body(ErrorCode.INTERNAL_SERVER_ERROR);
+                .body(ResultResponse.failure(ErrorCode.INTERNAL_SERVER_ERROR));
     }
 }
