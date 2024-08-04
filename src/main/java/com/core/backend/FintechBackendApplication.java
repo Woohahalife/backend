@@ -1,4 +1,4 @@
-package com.core.fintechbackend;
+package com.core.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class FintechBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FintechBackendApplication.class, args);
 	}
-
 }
