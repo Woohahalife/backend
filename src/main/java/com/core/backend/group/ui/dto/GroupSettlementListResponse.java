@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class GroupSettlementListResponse {  
   
     private Long id;  
-    private String name;
+    private String settlementName;
     private int totalPaymentAmount;
     private LocalDate settlementAt;
 }

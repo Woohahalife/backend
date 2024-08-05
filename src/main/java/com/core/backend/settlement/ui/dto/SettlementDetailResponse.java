@@ -14,10 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 public class SettlementDetailResponse {
     private Long id; // 정산id
-    private String name; // 정산 내용
+    private String settlementName; // 정산 내용
     private int totalAmount; // 정산 총액
     private LocalDate groupingAt; // 모임 일자
-    private LocalDate settlementTime; // 정산 완료 일자
-    private String place; // 모임 장소
+    private LocalDate settlementAt; // 정산 완료 일자
+    private String settlementPlace; // 모임 장소
     private List<GroupParticipationResponse> participaints;
 }

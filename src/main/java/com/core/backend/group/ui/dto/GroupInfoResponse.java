@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class GroupInfoResponse {
 
     private Long id;
-    private String name;
+    private String groupName;
     private LocalDate createAt;
     private int numOfParticipantCount;
     private boolean bookmark;
