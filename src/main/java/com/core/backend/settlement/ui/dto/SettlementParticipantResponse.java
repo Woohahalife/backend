@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class SettlementParticipantResponse {
 
     private Long id;
-    private String settlementName;
+    private String participantName;
     private int paymentAmount;
     private boolean agreementStatus;
 }

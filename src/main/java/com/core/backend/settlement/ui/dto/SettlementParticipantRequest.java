@@ -8,7 +8,7 @@ import lombok.Getter;
 public class SettlementParticipantRequest {
 
     private Long id;
-    private String settlementName;
+    private String participantName;
     private int paymentAmount;
     private boolean agreementStatus;
 }
