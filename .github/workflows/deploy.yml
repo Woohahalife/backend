@@ -66,7 +66,7 @@ jobs:
           target: "/home/backend-admin"
 
       - name: Connect to Azure VM & Execute Application
-        uses: appleboy/scp-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.AZURE_HOST }}
           username: ${{ secrets.AZURE_USERNAME }}
