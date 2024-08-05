@@ -38,7 +38,7 @@ public class RequestSettlementMockData {
                 .filter(Objects::nonNull)
                 .map(participant -> new SettlementParticipantResponse(
                         participant.getId(),
-                        participant.getSettlementName(),
+                        participant.getParticipantName(),
                         participant.getPaymentAmount(),
                         participant.isAgreementStatus()
                 ))
