@@ -42,7 +42,7 @@ while true; do
     ((counter++))
     sleep 3
 
-    HEALTH_CHECK_REQUEST=$(curl -s http://172.18.0.1:8080/health | grep -o '"status":"[^"]*' | awk -F '"' '{print $2}')
+    HEALTH_CHECK_REQUEST=$(curl -s http://172.18.0.1:8080/health | grep -o '"status":"[^"]*' | awk -F '"' '{print $4}')
     if [ "$HEALTH_CHECK_REQUEST" = "Connected" ]; then
         echo "헬스 체크 성공! 시도 횟수 : $counter"
         break
