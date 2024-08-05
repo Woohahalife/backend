@@ -11,12 +11,12 @@ import java.util.Map;
 
 public class GetGroupSettlementMockData {
 
-    public static final Map<Long, GroupSettlementResponse> groupDataMap = new HashMap<>();
+    public static final Map<Long, GroupSettlementResponse> dataMap = new HashMap<>();
 
     static {
-        groupDataMap.put(1L, mockDataForGroup1());
-        groupDataMap.put(2L, mockDataForGroup2());
-        groupDataMap.put(3L, mockDataForGroup3());
+        dataMap.put(1L, mockDataForGroup1());
+        dataMap.put(2L, mockDataForGroup2());
+        dataMap.put(3L, mockDataForGroup3());
     }
 
     public static GroupSettlementResponse mockDataForGroup1() {
@@ -76,10 +76,10 @@ public class GetGroupSettlementMockData {
 
     private static List<GroupSettlementListResponse> getGroupSettlementListResponsesForGroup2() {
         GroupSettlementListResponse settlementResponse1 = new GroupSettlementListResponse(
-                4L, "첫 모임", 60000, LocalDate.of(2024, 6, 23)
+                4L, "첫 모임 1차", 60000, LocalDate.of(2024, 6, 23)
         );
         GroupSettlementListResponse settlementResponse2 = new GroupSettlementListResponse(
-                5L, "두 번째 모임", 70000, LocalDate.of(2024, 6, 23)
+                5L, "첫 모임 2차", 70000, LocalDate.of(2024, 6, 23)
         );
 
         return List.of(settlementResponse1, settlementResponse2);

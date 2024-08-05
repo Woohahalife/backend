@@ -27,7 +27,7 @@ public class GroupController {
 
     @GetMapping("/groups/{groupsId}")
     public ResultResponse<GroupSettlementResponse> getGroupSettlements(@PathVariable Long groupsId) {
-        Map<Long, GroupSettlementResponse> groupDataMap = GetGroupSettlementMockData.groupDataMap;
+        Map<Long, GroupSettlementResponse> groupDataMap = GetGroupSettlementMockData.dataMap;
         GroupSettlementResponse response = groupDataMap.get(groupsId);
 
         return ResultResponse.success(response);
