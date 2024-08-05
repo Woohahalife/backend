@@ -17,13 +17,7 @@ public class GetAllGroupMockData {
         GroupInfoResponse response3 = new GroupInfoResponse(
                 3L, "개발팀 회식", LocalDate.of(2024, 7, 1), 4, true
         );
-        GroupInfoResponse response4 = new GroupInfoResponse(
-                4L, "대학 동기 회식", LocalDate.of(2024, 7, 10), 7, false
-        );
-        GroupInfoResponse response5 = new GroupInfoResponse(
-                5L, "가족 모임", LocalDate.of(2024, 7, 11), 4, false
-        );
 
-        return List.of(response1, response2, response3, response4, response5);
+        return List.of(response1, response2, response3);
     }
 }
