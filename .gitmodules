@@ -1,0 +1,3 @@
+[submodule "secret"]
+	path = src/main/resources/backend-secret
+	url = https://github.com/FintechInternshipCourse-Dongas/backend-secret.git
