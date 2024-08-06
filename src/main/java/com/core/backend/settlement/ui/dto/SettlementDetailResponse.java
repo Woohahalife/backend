@@ -1,6 +1,6 @@
 package com.core.backend.settlement.ui.dto;
 
-import com.core.backend.participation.ui.dto.GroupParticipationResponse;
+import com.core.backend.participant.ui.dto.GroupParticipantResponse;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,5 +19,5 @@ public class SettlementDetailResponse {
     private LocalDate groupingAt; // 모임 일자
     private LocalDate settlementAt; // 정산 완료 일자
     private String settlementPlace; // 모임 장소
-    private List<GroupParticipationResponse> participaints;
+    private List<GroupParticipantResponse> participaints;
 }
