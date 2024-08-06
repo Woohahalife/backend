@@ -40,7 +40,7 @@ public class RequestSettlementMockData {
                         participant.getId(),
                         participant.getParticipantName(),
                         participant.getPaymentAmount(),
-                        participant.isAgreementStatus()
+                        true
                 ))
                 .collect(Collectors.toList());
     }

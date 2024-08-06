@@ -36,7 +36,7 @@ public class SettlementController {
         return ResultResponse.success(null);
     }
 
-    @GetMapping("settlements/{settlementId}/participants")
+    @GetMapping("/settlements/{settlementId}/participants")
     @Operation(summary = "요청한 정산 상황(동의 여부) 조회 api", description = "요청한 정산에 대해 참가자의 동의 상태를 조회한다.")
     public ResultResponse<List<SettlementParticipantResponse>> getSettlementParticipants(@PathVariable Long settlementId) {
         List<SettlementParticipantResponse> response = RequestSettlementMockData.getParticipantsBySettlement(settlementId);
