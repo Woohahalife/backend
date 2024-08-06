@@ -7,7 +7,6 @@ import com.core.backend.group.ui.dto.GroupInfoResponse;
 
 public class GetAllGroupMockData {
 
-	@SuppressWarnings("checkstyle:RegexpMultiline")
 	public static List<GroupInfoResponse> mockData() {
 
 		GroupInfoResponse response1 = new GroupInfoResponse(1L, "HNRC", LocalDate.of(2024, 5, 12), 5, false);
