@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class GroupMemberResponse {  
   
     private Long id;  
-    private String name;  
+    private String memberName;
 }

@@ -1,7 +1,8 @@
 spring:
   config:
     import:
-
+      - classpath:/backend-secret/application-local.yml
+      - classpath:/backend-secret/application-dev.yml
   profiles:
     default: local
     active: local
@@ -20,3 +21,4 @@ springdoc:
     display-request-duration: true
   paths-to-match:
     - /**
+
