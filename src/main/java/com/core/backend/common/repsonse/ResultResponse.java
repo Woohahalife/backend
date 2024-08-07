@@ -20,6 +20,14 @@ public final class ResultResponse<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
+     public static <T> ResultResponse<T> success() {
+        return new ResultResponse<>(
+            HttpStatus.OK,
+            HttpStatus.OK.value(),
+            "요청이 성공적으로 처리되었습니다.",
+            null);
+    }
+
     public static <T> ResultResponse<T> success(T data) {
         return new ResultResponse<>(
                 HttpStatus.OK,
