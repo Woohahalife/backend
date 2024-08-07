@@ -9,6 +9,7 @@ import com.core.backend.usergroup.domain.UserGroup;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,8 +34,8 @@ public class Group extends BaseEntity {
 	@Column(name = "group_name", nullable = false)
 	private String groupName;
 
-	@Column(name = "invitation_code")
-	private String invitationCode;
+	@Embedded
+	private InvitationCode invitationCode;
 
 	@Column(name = "bookmark", nullable = false)
 	private boolean bookmark;
@@ -43,10 +44,14 @@ public class Group extends BaseEntity {
 	private Set<UserGroup> members = new HashSet<>();
 
 	@Builder
-	private Group(String groupName, String invitationCode, boolean bookmark) {
+	private Group(String groupName) {
 		this.groupName = groupName;
-		this.invitationCode = invitationCode;
+		this.invitationCode = new InvitationCode("00000");
 		this.bookmark = false;
+	}
+
+	public static Group of(String groupName) {
+		return new Group(groupName);
 	}
 
 	public void addUserToGroup(User user) {
@@ -56,6 +61,11 @@ public class Group extends BaseEntity {
 
 	public int getNumberOfGroupMembers() {
 		return members.size();
+	}
+
+	public String generateInviteCode() {
+		this.invitationCode.generateRandomCode();
+		return this.invitationCode.getCode();
 	}
 
 }
