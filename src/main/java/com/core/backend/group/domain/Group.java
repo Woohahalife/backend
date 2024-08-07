@@ -1,7 +1,13 @@
 package com.core.backend.group.domain;
 
 import com.core.backend.common.entity.BaseEntity;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,22 +18,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Group extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "group_name", nullable = false)
-    private String groupName;
+	@Column(name = "group_name", nullable = false)
+	private String groupName;
 
-    @Column(name = "invitation_code")
-    private String invitationCode;
+	@Column(name = "invitation_code")
+	private String invitationCode;
 
-    @Column(name = "bookmark", nullable = false)
-    private boolean bookmark;
+	@Column(name = "bookmark", nullable = false)
+	private boolean bookmark;
 
-    public Group(String groupName, String invitationCode) {
-        this.groupName = groupName;
-        this.invitationCode = invitationCode;
-        this.bookmark = bookmark = false;
-    }
+	public Group(String groupName, String invitationCode) {
+		this.groupName = groupName;
+		this.invitationCode = invitationCode;
+		this.bookmark = bookmark = false;
+	}
 }

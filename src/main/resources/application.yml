@@ -4,13 +4,13 @@ spring:
       - classpath:/backend-secret/application-local.yml
       - classpath:/backend-secret/application-dev.yml
   profiles:
-    default: local
-    active: local
+    default: dev
+    active: dev
 
 springdoc:
   api-docs:
     version: openapi_3_0
-    path: /public-api/api-docs
+    path: /api-docs
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   swagger-ui:

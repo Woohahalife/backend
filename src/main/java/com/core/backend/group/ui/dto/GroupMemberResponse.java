@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class GroupMemberResponse {  
-  
-    private Long id;  
-    private String memberName;
+public class GroupMemberResponse {
+
+	private Long id;
+	private String memberName;
 }

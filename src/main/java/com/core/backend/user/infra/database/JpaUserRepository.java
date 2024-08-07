@@ -1,14 +1,16 @@
 package com.core.backend.user.infra.database;
 
-import com.core.backend.user.domain.User;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.core.backend.user.domain.User;
 
 public interface JpaUserRepository extends JpaRepository<User, Long> {
 
+	Optional<User> findByEmail(final String email);
 
-    boolean existsByEmail(final String email);
+	boolean existsByEmail(final String email);
 
-    boolean existsByPhoneNumber(final String phoneNumber);
+	boolean existsByPhoneNumber(final String phoneNumber);
 }
