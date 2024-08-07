@@ -11,7 +11,9 @@ public enum ErrorCode {
 
 	DUPLICATE_EMAIL(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 이메일입니다."),
 	DUPLICATE_PHONE_NUMBER(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 휴대폰 번호입니다."),
+	DUPLICATE_ACCOUNT_NUMBER(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 계좌번호 입니다."),
 
+	BANK_IS_NOT_FOUND(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value() ,"일치하는 은행이 없습니다."),
 	NOT_VALID_USER(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "유효한 사용자를 찾을 수 없습니다."),
 	NOT_VALID_GROUP(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "유효한 모임방을 찾을 수 없습니다."),
 
