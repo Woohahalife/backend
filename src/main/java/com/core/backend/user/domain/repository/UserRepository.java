@@ -15,7 +15,7 @@ public interface UserRepository {
 
 	boolean existsByPhoneNumber(final String phoneNumber);
 
-	User findById(final Long authUser);
+	User findById(final Long userId);
 
 	List<User> saveAll(final List<User> users);
 }

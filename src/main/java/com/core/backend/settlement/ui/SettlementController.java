@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.core.backend.common.mock.GetGroupSettlementDetailMockData;
-import com.core.backend.common.mock.RequestSettlementMockData;
+import com.core.backend.common.mock.data.GetGroupSettlementDetailMockData;
+import com.core.backend.common.mock.data.RequestSettlementMockData;
 import com.core.backend.common.repsonse.ResultResponse;
 import com.core.backend.settlement.ui.dto.SettlementDetailResponse;
 import com.core.backend.settlement.ui.dto.SettlementParticipantResponse;
