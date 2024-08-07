@@ -9,13 +9,13 @@ public interface UserRepository {
 
 	User save(final User user);
 
-	Optional<User> findByEmail(final String email);
+	User findByEmail(final String email);
 
 	boolean existsByEmail(final String email);
 
 	boolean existsByPhoneNumber(final String phoneNumber);
 
-	Optional<User> findById(Long authUser);
+	User findById(final Long authUser);
 
-	List<User> saveAll(List<User> users);
+	List<User> saveAll(final List<User> users);
 }
