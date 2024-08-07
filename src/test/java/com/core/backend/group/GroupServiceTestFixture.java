@@ -1,17 +1,14 @@
 package com.core.backend.group;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
+import com.core.backend.ServiceTestEnvSupport;
 import com.core.backend.group.application.GroupCommandService;
 import com.core.backend.group.application.GroupQueryService;
 import com.core.backend.group.infra.JpaGroupRepository;
-import com.core.backend.user.domain.repository.UserRepository;
+import com.core.backend.user.infra.database.JpaUserRepository;
 
-@ActiveProfiles("test")
-@SpringBootTest
-public abstract class GroupServiceTestFixture {
+public abstract class GroupServiceTestFixture extends ServiceTestEnvSupport {
 
 	@Autowired
 	protected GroupCommandService groupCommandService;
@@ -23,5 +20,5 @@ public abstract class GroupServiceTestFixture {
 	protected JpaGroupRepository groupRepository;
 
 	@Autowired
-	protected UserRepository userRepository;
+	protected JpaUserRepository userRepository;
 }
