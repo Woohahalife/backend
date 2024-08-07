@@ -5,8 +5,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import com.core.backend.auth.exception.AuthException;
+import com.core.backend.common.exception.ErrorCode;
 import com.core.backend.user.domain.User;
 import com.core.backend.user.domain.repository.UserRepository;
+import com.core.backend.user.exception.UserException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,8 +25,9 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public Optional<User> findByEmail(String email) {
-		return repository.findByEmail(email);
+	public User findByEmail(String email) {
+		return repository.findByEmail(email)
+			.orElseThrow(() -> new AuthException(ErrorCode.BAD_CREDENTIALS));
 	}
 
 	@Override
@@ -37,8 +41,9 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public Optional<User> findById(Long authUser) {
-		return repository.findById(authUser);
+	public User findById(Long authUser) {
+		return repository.findById(authUser)
+			.orElseThrow(() -> new UserException(ErrorCode.NOT_VALID_USER));
 	}
 
 	@Override

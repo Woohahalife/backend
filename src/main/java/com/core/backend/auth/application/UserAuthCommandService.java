@@ -43,7 +43,6 @@ public class UserAuthCommandService {
 	}
 
 	private User verifyEmailAndLoginType(UserLoginRequest request) {
-		return userRepository.findByEmail(request.getEmail())
-			.orElseThrow(() -> new AuthException(ErrorCode.BAD_CREDENTIALS));
+		return userRepository.findByEmail(request.getEmail());
 	}
 }
