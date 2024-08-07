@@ -30,7 +30,7 @@ class UserTest {
 			.build();
 
 		// when
-		user.encode(rawPassword, passwordEncryptor);
+		user.encode(passwordEncryptor);
 
 		// then
 		assertThat(rawPassword).isNotEqualTo(user.getPassword().getPassword());
@@ -48,7 +48,7 @@ class UserTest {
 			.phoneNumber("01042421075")
 			.build();
 
-		user.encode(rawPassword, passwordEncryptor);
+		user.encode(passwordEncryptor);
 
 		// when
 		String decodedPassword = user.getPassword().decode(passwordEncryptor);

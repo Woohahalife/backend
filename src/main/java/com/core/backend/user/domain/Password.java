@@ -18,7 +18,7 @@ public class Password {
 		this.password = password;
 	}
 
-	public Password encodePassword(String password, PasswordEncryptor encoder) {
+	public Password encodePassword(PasswordEncryptor encoder) {
 		this.password = encoder.encrypt(password);
 		return this;
 	}
