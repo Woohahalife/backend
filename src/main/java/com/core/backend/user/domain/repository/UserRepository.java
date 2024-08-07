@@ -1,5 +1,6 @@
 package com.core.backend.user.domain.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.core.backend.user.domain.User;
@@ -13,4 +14,8 @@ public interface UserRepository {
 	boolean existsByEmail(final String email);
 
 	boolean existsByPhoneNumber(final String phoneNumber);
+
+	Optional<User> findById(Long authUser);
+
+	List<User> saveAll(List<User> users);
 }

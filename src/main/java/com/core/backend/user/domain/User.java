@@ -71,8 +71,8 @@ public class User extends BaseEntity {
 		return new Password(password);
 	}
 
-	public User encode(String rowPassword, PasswordEncryptor encoder) {
-		password = this.password.encodePassword(rowPassword, encoder);
+	public User encode(PasswordEncryptor encoder) {
+		password = this.password.encodePassword(encoder);
 		return this;
 	}
 

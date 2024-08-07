@@ -28,7 +28,7 @@ public class UserCommandService {
 		validateDuplicatePhoneNumber(request.getPhoneNumber());
 
 		User user = request.toEntity()
-			.encode(request.getPassword(), passwordEncoder);
+			.encode(passwordEncoder);
 
 		userRepository.save(user);
 	}

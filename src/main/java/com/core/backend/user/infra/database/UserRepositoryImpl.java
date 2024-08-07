@@ -1,5 +1,6 @@
 package com.core.backend.user.infra.database;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -13,25 +14,35 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
 
-	private final JpaUserRepository jpaUserRepository;
+	private final JpaUserRepository repository;
 
 	@Override
 	public User save(User user) {
-		return jpaUserRepository.save(user);
+		return repository.save(user);
 	}
 
 	@Override
 	public Optional<User> findByEmail(String email) {
-		return jpaUserRepository.findByEmail(email);
+		return repository.findByEmail(email);
 	}
 
 	@Override
 	public boolean existsByEmail(String email) {
-		return jpaUserRepository.existsByEmail(email);
+		return repository.existsByEmail(email);
 	}
 
 	@Override
 	public boolean existsByPhoneNumber(String phoneNumber) {
-		return jpaUserRepository.existsByPhoneNumber(phoneNumber);
+		return repository.existsByPhoneNumber(phoneNumber);
+	}
+
+	@Override
+	public Optional<User> findById(Long authUser) {
+		return repository.findById(authUser);
+	}
+
+	@Override
+	public List<User> saveAll(List<User> users) {
+		return repository.saveAll(users);
 	}
 }

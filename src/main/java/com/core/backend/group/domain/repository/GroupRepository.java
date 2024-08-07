@@ -1,0 +1,1 @@
+package com.core.backend.group.domain.repository;import java.util.List;import com.core.backend.group.domain.Group;public interface GroupRepository {	Group save(final Group group);	List<Group> findAll();}

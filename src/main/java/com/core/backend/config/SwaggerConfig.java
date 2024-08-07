@@ -2,15 +2,17 @@ package com.core.backend.config;
 
 import java.util.List;
 
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.tags.Tag;
-
-import org.springdoc.core.models.GroupedOpenApi;
 
 @Configuration
 @OpenAPIDefinition(
@@ -37,9 +39,21 @@ public class SwaggerConfig {
 
 	@Bean
 	public OpenAPI apiInfo() {
+		SecurityScheme apiKey = new SecurityScheme()
+			.type(SecurityScheme.Type.APIKEY)
+			.scheme("Bearer")
+			.bearerFormat("JWT")
+			.description("JWT token authentication")
+			.in(SecurityScheme.In.HEADER)
+			.name("Authorization");
+
+		SecurityRequirement securityRequirement = new SecurityRequirement()
+			.addList("Bearer Token");
 
 		return new OpenAPI()
-			.tags(getTagList());
+			.tags(getTagList())
+			.components(new Components().addSecuritySchemes("Bearer Token", apiKey))
+			.addSecurityItem(securityRequirement);
 	}
 
 	private List<Tag> getTagList() {
