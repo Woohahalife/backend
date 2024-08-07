@@ -1,4 +1,4 @@
-package com.core.backend.common.mock;
+package com.core.backend.common.mock.data;
 
 import java.util.ArrayList;
 import java.util.Collections;
