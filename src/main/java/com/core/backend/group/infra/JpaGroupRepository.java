@@ -1,0 +1,1 @@
+package com.core.backend.group.infra;import org.springframework.data.jpa.repository.JpaRepository;import com.core.backend.group.domain.Group;public interface JpaGroupRepository  extends JpaRepository<Group, Long> {}

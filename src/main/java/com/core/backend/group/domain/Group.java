@@ -1,14 +1,22 @@
 package com.core.backend.group.domain;
 
-import com.core.backend.common.entity.BaseEntity;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.core.backend.common.entity.BaseEntity;
+import com.core.backend.user.domain.User;
+import com.core.backend.usergroup.domain.UserGroup;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,9 +39,19 @@ public class Group extends BaseEntity {
 	@Column(name = "bookmark", nullable = false)
 	private boolean bookmark;
 
-	public Group(String groupName, String invitationCode) {
+	@OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<UserGroup> members = new HashSet<>();
+
+	@Builder
+	private Group(String groupName, String invitationCode, boolean bookmark) {
 		this.groupName = groupName;
 		this.invitationCode = invitationCode;
-		this.bookmark = bookmark = false;
+		this.bookmark = false;
 	}
+
+	public void addUserToGroup(User user) {
+		UserGroup groupMember = new UserGroup(user, this);
+		members.add(groupMember);
+	}
+
 }
