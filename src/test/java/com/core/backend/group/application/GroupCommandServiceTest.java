@@ -15,7 +15,7 @@ import com.core.backend.user.domain.User;
 class GroupCommandServiceTest extends GroupServiceTestFixture {
 
 	@Test
-	@Transactional // 트랜잭션 내부에서 지연로딩된 컬렉션을 조회할 필요가 있음
+	@Transactional // 트랜잭션 내부에서 지연로딩된 컬렉션을 조회할 필요가 있음 
 	@DisplayName("모임방을 생성한다.")
 	void registerGroupTest() {
 		// given
