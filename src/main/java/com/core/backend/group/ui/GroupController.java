@@ -46,11 +46,12 @@ public class GroupController {
 
 	@GetMapping("/groups")
 	@Operation(summary = "사용자가 참여한 모임방 조회 api", description = "사용자가 참여한 모임방 목록을 조회한다.")
-	public ResultResponse<List<GroupInfoResponse>> getAllGroupMock() {
+	public ResultResponse<List<GroupInfoResponse>> getAllGroup(@Authenticated AuthUser authUser) {
+		log.info("[GroupController -> Called : getAllGroup] 사용자가 참여한 모임방 조회 api 동작");
 
-		List<GroupInfoResponse> responses = GetAllGroupMockData.mockData();
+		List<GroupInfoResponse> responseList = groupQueryService.getAllGroup(authUser.getUserId());
 
-		return ResultResponse.success(responses);
+		return ResultResponse.success(responseList);
 	}
 
 	@GetMapping("/groups/{groupsId}")

@@ -54,4 +54,8 @@ public class Group extends BaseEntity {
 		members.add(groupMember);
 	}
 
+	public int getNumberOfGroupMembers() {
+		return members.size();
+	}
+
 }
