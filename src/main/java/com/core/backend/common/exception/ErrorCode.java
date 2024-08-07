@@ -7,6 +7,11 @@ import org.springframework.http.HttpStatus;
 @Getter
 @RequiredArgsConstructor
 public enum ErrorCode {
+    DUPLICATE_EMAIL(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 이메일입니다."),
+    DUPLICATE_PHONE_NUMBER(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 휴대폰 번호입니다."),
+
+    ALREADY_DELETED_DATA(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "이미 삭제처리 된 데이터입니다."),
+
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR.value(), "inertnal_server_error");
 
     private final HttpStatus httpStatus;
