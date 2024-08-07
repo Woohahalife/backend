@@ -1,7 +1,6 @@
 package com.core.backend.group.ui.dto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import com.core.backend.group.domain.Group;
 
