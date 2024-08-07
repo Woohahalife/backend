@@ -4,8 +4,8 @@ spring:
       - classpath:/backend-secret/application-local.yml
       - classpath:/backend-secret/application-dev.yml
   profiles:
-    default: local
-    active: local
+    default: dev
+    active: dev
 
 springdoc:
   api-docs:

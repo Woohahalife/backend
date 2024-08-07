@@ -19,7 +19,7 @@ class UserTest {
 
 	@Test
 	@DisplayName("비밀번호를 인코딩할 수 있다.")
-	void PasswordEncoding() {
+	void passwordEncoding() {
 		// given
 		String rawPassword = "password123";
 		User user = User.builder()
@@ -38,7 +38,7 @@ class UserTest {
 
 	@Test
 	@DisplayName("비밀번호를 디코딩할 수 있다.")
-	void PasswordDecoding() {
+	void passwordDecoding() {
 		// given
 		String rawPassword = "password123";
 		User user = User.builder()
