@@ -1,4 +1,4 @@
-package com.core.backend.common.mock;
+package com.core.backend.common.mock.data;
 
 import java.time.LocalDate;
 import java.util.List;

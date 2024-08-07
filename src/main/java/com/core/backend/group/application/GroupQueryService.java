@@ -17,16 +17,16 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class GroupQueryService {
 
 	private final GroupRepository groupRepository;
 	private final UserGroupRepository userGroupRepository;
 
-	public List<GroupInfoResponse> getAllGroup(Long authUser) {
+	public List<GroupInfoResponse> getAllGroup(Long userId) {
 
-		List<Group> groupList = userGroupRepository.findAllByUserId(authUser).stream()
+		List<Group> groupList = userGroupRepository.findAllByUserId(userId).stream()
 			.map(UserGroup::getGroup)
 			.toList();
 

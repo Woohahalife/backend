@@ -1,4 +1,4 @@
-package com.core.backend.common.mock;
+package com.core.backend.common.mock.data;
 
 import com.core.backend.participant.ui.dto.GroupParticipantResponse;
 import com.core.backend.settlement.ui.dto.SettlementDetailResponse;

@@ -47,9 +47,7 @@ class GroupQueryServiceTest extends GroupServiceTestFixture {
 	}
 
 	private Group setGroupData(String testGroup1, User user) {
-		Group group = Group.builder()
-			.groupName(testGroup1)
-			.build();
+		Group group = Group.of(testGroup1);
 
 		group.addUserToGroup(user);
 

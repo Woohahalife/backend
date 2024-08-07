@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.core.backend.auth.ui.dto.AuthUser;
 import com.core.backend.auth.util.Authenticated;
-import com.core.backend.common.mock.GetAllGroupMockData;
-import com.core.backend.common.mock.GetGroupSettlementMockData;
+import com.core.backend.common.mock.data.GetGroupSettlementMockData;
 import com.core.backend.common.repsonse.ResultResponse;
 import com.core.backend.group.application.GroupCommandService;
 import com.core.backend.group.application.GroupQueryService;
 import com.core.backend.group.application.dto.GroupRegisterServiceRequest;
 import com.core.backend.group.ui.dto.GroupInfoResponse;
+import com.core.backend.group.ui.dto.GroupInviteResponse;
 import com.core.backend.group.ui.dto.GroupRegisterRequest;
 import com.core.backend.group.ui.dto.GroupSettlementResponse;
 
@@ -54,13 +54,19 @@ public class GroupController {
 		return ResultResponse.success(responseList);
 	}
 
-	@GetMapping("/groups/{groupsId}")
+	@GetMapping("/groups/{groupId}")
 	@Operation(summary = "기정산 내역 요약 조회 api", description = "선택한 모임방에 대해 완료된 정산 내역 목록을 조회한다.")
-	public ResultResponse<GroupSettlementResponse> getGroupSettlements(@PathVariable Long groupsId) {
+	public ResultResponse<GroupSettlementResponse> getGroupSettlements(@PathVariable Long groupId) {
 		Map<Long, GroupSettlementResponse> groupDataMap = GetGroupSettlementMockData.dataMap;
-		GroupSettlementResponse response = groupDataMap.get(groupsId);
+		GroupSettlementResponse response = groupDataMap.get(groupId);
 
 		return ResultResponse.success(response);
 	}
 
+	@PostMapping("/groups/{groupId}/invite")
+	@Operation(summary = "모임 참여자 초대 api", description = "초대코드를 생성해 모임방에 참여할 수 있는 기능을 제공한다.")
+	public ResultResponse<GroupInviteResponse> generateInviteCode(@Authenticated AuthUser authUser, @PathVariable Long groupId) {
+
+		return	ResultResponse.success(groupCommandService.generateInviteCode(authUser.getUserId(), groupId));
+	}
 }
