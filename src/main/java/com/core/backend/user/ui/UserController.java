@@ -29,6 +29,6 @@ public class UserController {
 
 		userCommandService.signUp(request.toService());
 
-		return ResultResponse.success(null);
+		return ResultResponse.success();
 	}
 }
