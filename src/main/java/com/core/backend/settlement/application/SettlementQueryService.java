@@ -24,6 +24,7 @@ public class SettlementQueryService {
 	public SettlementDetailResponse getGroupSettlementDetail(Long userId, Long settlementId) {
 		Settlement settlement = settlementRepository.findById(settlementId);
 		List<Participant> participants = participantRepository.findAllBySettlementId(settlementId);
-		return null;
+
+		return SettlementDetailResponse.of(settlement, participants);
 	}
 }
