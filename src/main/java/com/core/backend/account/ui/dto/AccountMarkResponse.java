@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class AccountMarkResponse {
 
 	private Long accountId;
-	private boolean bookMark;
+	private boolean isMainAccount;
 
 	public static AccountMarkResponse from(Account account) {
 		return new AccountMarkResponse(account.getId(), account.isMainAccount());
