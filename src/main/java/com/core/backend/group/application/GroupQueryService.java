@@ -31,7 +31,7 @@ public class GroupQueryService {
 			.toList();
 
 		return groupList.stream()
-			.map(GroupInfoResponse::convertFromGroup)
+			.map(GroupInfoResponse::from)
 			.collect(Collectors.toList());
 	}
 }
