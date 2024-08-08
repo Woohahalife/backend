@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.core.backend.auth.ui.dto.AuthUser;
+import com.core.backend.auth.util.Authenticated;
 import com.core.backend.common.mock.data.GetGroupSettlementDetailMockData;
 import com.core.backend.common.mock.data.RequestSettlementMockData;
 import com.core.backend.common.repsonse.ResultResponse;
+import com.core.backend.settlement.application.SettlementCommandService;
+import com.core.backend.settlement.application.SettlementQueryService;
 import com.core.backend.settlement.ui.dto.SettlementDetailResponse;
 import com.core.backend.settlement.ui.dto.SettlementParticipantResponse;
 import com.core.backend.settlement.ui.dto.SettlementRegisterRequest;
@@ -23,12 +27,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SettlementController {
 
+	private final SettlementCommandService settlementCommandService;
+	private final SettlementQueryService settlementQueryService;
+
 	@GetMapping("/settlements/{settlementId}")
 	@Operation(summary = "기정산 내역 상세 조회 api", description = "모임방 별로 완료 내역을 상세 조회한다.")
-	public ResultResponse<SettlementDetailResponse> getGroupSettlementDetail(@PathVariable Long settlementId) {
+	public ResultResponse<SettlementDetailResponse> getGroupSettlementDetail(@Authenticated AuthUser authUser, @PathVariable Long settlementId) {
 
-		Map<Long, SettlementDetailResponse> dataMap = GetGroupSettlementDetailMockData.dataMap;
-		SettlementDetailResponse response = dataMap.get(settlementId);
+		SettlementDetailResponse response = settlementQueryService.getGroupSettlementDetail(authUser.getUserId(), settlementId);
 
 		return ResultResponse.success(response);
 	}

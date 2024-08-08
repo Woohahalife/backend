@@ -23,8 +23,18 @@ public class UserGroupRepositoryImpl implements UserGroupRepository {
 	}
 
 	@Override
+	public List<UserGroup> findAllByGroupId(Long groupId) {
+		return repository.findAllByGroupId(groupId);
+	}
+
+	@Override
 	public UserGroup findByGroupIdAndUserId(final Long groupId, final Long userId) {
 		return repository.findByGroupIdAndUserId(groupId, userId)
 			.orElseThrow(() -> new UserGroupException(ErrorCode.INVALID_GROUP_FOR_USER));
+	}
+
+	@Override
+	public boolean existsByUserIdAndGroupId(final Long userId, final Long groupId) {
+		return repository.existsByUserIdAndGroupId(userId, groupId);
 	}
 }

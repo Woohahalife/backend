@@ -48,17 +48,18 @@ public class GroupController {
 	@Operation(summary = "사용자가 참여한 모임방 조회 api", description = "사용자가 참여한 모임방 목록을 조회한다.")
 	public ResultResponse<List<GroupInfoResponse>> getAllGroup(@Authenticated AuthUser authUser) {
 		log.info("[GroupController -> Called : getAllGroup] 사용자가 참여한 모임방 조회 api 동작");
-
 		List<GroupInfoResponse> responseList = groupQueryService.getAllGroup(authUser.getUserId());
 
 		return ResultResponse.success(responseList);
 	}
 
 	@GetMapping("/groups/{groupId}")
-	@Operation(summary = "기정산 내역 요약 조회 api", description = "선택한 모임방에 대해 완료된 정산 내역 목록을 조회한다.")
-	public ResultResponse<GroupSettlementResponse> getGroupSettlements(@PathVariable Long groupId) {
+	@Operation(summary = "기정산 내역 요약 조회 api(모임방 상세 조회)", description = "선택한 모임방에 대해 완료된 정산 내역 목록을 조회한다.")
+	public ResultResponse<GroupSettlementResponse> getGroupSettlements(@Authenticated AuthUser authUser, @PathVariable Long groupId) {
 		Map<Long, GroupSettlementResponse> groupDataMap = GetGroupSettlementMockData.dataMap;
-		GroupSettlementResponse response = groupDataMap.get(groupId);
+		// GroupSettlementResponse response = groupDataMap.get(groupId);
+
+		GroupSettlementResponse response = groupQueryService.getGroupSettlements(authUser.getUserId(), groupId);
 
 		return ResultResponse.success(response);
 	}

@@ -18,6 +18,7 @@ public enum ErrorCode {
 	NOT_FOUND_USER(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "유효한 사용자를 찾을 수 없습니다."),
 	NOT_FOUND_GROUP(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "유효한 모임방을 찾을 수 없습니다."),
 	INVALID_GROUP_FOR_USER(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "사용자가 접근할 수 없는 모임입니다."),
+	NOT_FOUND_GROUP_MEMBER(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당 모임에 참여한 사용자가 아닙니다"),
 
 	INVALID_TOKEN_FORMAT(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.value(), "올바른 토큰 형식이 아닙니다."),
 	BAD_CREDENTIALS(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.value(), "사용자 정보가 잘못되었습니다."),
