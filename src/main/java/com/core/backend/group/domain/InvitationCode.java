@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class InvitationCode {
 
-	@Column(name = "invite_code")
 	private String code;
 
 	protected InvitationCode(String code) {

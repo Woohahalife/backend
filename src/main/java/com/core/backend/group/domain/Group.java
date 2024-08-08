@@ -38,6 +38,7 @@ public class Group extends BaseEntity {
 	private String groupName;
 
 	@Embedded
+	@Column(name = "invitation_code")
 	private InvitationCode invitationCode;
 
 	@Column(name = "bookmark", nullable = false)

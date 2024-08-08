@@ -24,7 +24,7 @@ class GroupCommandServiceTest extends GroupServiceTestFixture {
 
 		AuthUser authUser = new AuthUser(user.getId());
 
-		GroupRegisterServiceRequest request = GroupRegisterServiceRequest.ofCreate("testGroup");
+		GroupRegisterServiceRequest request = GroupRegisterServiceRequest.from("testGroup");
 
 		// when
 		groupCommandService.createGroup(authUser.getUserId(), request);
