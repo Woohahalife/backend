@@ -31,9 +31,8 @@ public class SettlementController {
 	private final SettlementQueryService settlementQueryService;
 
 	@GetMapping("/settlements/{settlementId}")
-	@Operation(summary = "기정산 내역 상세 조회 api", description = "모임방 별로 완료 내역을 상세 조회한다.")
+	@Operation(summary = "기정산 내역 상세 조회 api", description = "모임방 별 완료된 정산의 상세 내역을 조회한다.")
 	public ResultResponse<SettlementDetailResponse> getGroupSettlementDetail(@Authenticated AuthUser authUser, @PathVariable Long settlementId) {
-
 		SettlementDetailResponse response = settlementQueryService.getGroupSettlementDetail(authUser.getUserId(), settlementId);
 
 		return ResultResponse.success(response);
@@ -42,7 +41,6 @@ public class SettlementController {
 	@PostMapping("/settlements/request")
 	@Operation(summary = "모임방 정산 요청(정산 생성) api", description = "새로운 정산을 요청(생성)한다.")
 	public ResultResponse<Void> requestSettlement(@RequestBody SettlementRegisterRequest request) {
-
 		RequestSettlementMockData.saveSettlement(request);
 
 		return ResultResponse.success(null);
