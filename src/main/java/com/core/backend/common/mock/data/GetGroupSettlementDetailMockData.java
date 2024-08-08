@@ -24,7 +24,7 @@ public class GetGroupSettlementDetailMockData {
 	}
 
 	public static SettlementDetailResponse getSettlementDetailResponse1ForGroup1() {
-		int totalAmount = 77000;
+		long totalAmount = 77000;
 		List<GroupParticipantResponse> participationResponses = getGroupParticipantResponses1(totalAmount);
 
 		return new SettlementDetailResponse(1L, "1차 회식", totalAmount, LocalDate.of(2024, 5, 12),
@@ -32,7 +32,7 @@ public class GetGroupSettlementDetailMockData {
 	}
 
 	public static SettlementDetailResponse getSettlementDetailResponse2ForGroup1() {
-		int totalAmount = 80000;
+		long totalAmount = 80000;
 		List<GroupParticipantResponse> participationResponses = getGroupParticipantResponses1(totalAmount);
 
 		return new SettlementDetailResponse(2L, "2차 회식", totalAmount, LocalDate.of(2024, 5, 12),
@@ -40,7 +40,7 @@ public class GetGroupSettlementDetailMockData {
 	}
 
 	public static SettlementDetailResponse getSettlementDetailResponse3ForGroup1() {
-		int totalAmount = 90000;
+		long totalAmount = 90000;
 		List<GroupParticipantResponse> participationResponses = getGroupParticipantResponses1(totalAmount);
 
 		return new SettlementDetailResponse(3L, "3차 회식", totalAmount, LocalDate.of(2024, 5, 12),
@@ -48,7 +48,7 @@ public class GetGroupSettlementDetailMockData {
 	}
 
 	public static SettlementDetailResponse getSettlementDetailResponse1ForGroup2() {
-		int totalAmount = 60000;
+		long totalAmount = 60000;
 		List<GroupParticipantResponse> participationResponses = getGroupParticipantResponses2(totalAmount);
 
 		return new SettlementDetailResponse(4L, "첫 모임 1차", totalAmount, LocalDate.of(2024, 6, 23),
@@ -56,7 +56,7 @@ public class GetGroupSettlementDetailMockData {
 	}
 
 	public static SettlementDetailResponse getSettlementDetailResponse2ForGroup2() {
-		int totalAmount = 70000;
+		long totalAmount = 70000;
 		List<GroupParticipantResponse> participationResponses = getGroupParticipantResponses2(totalAmount);
 
 		return new SettlementDetailResponse(5L, "첫 모임 2차", totalAmount, LocalDate.of(2024, 6, 23),
@@ -64,7 +64,7 @@ public class GetGroupSettlementDetailMockData {
 	}
 
 	public static SettlementDetailResponse getSettlementDetailResponse1ForGroup3() {
-		int totalAmount = 50000;
+		long totalAmount = 50000;
 		List<GroupParticipantResponse> participationResponses = getGroupParticipantResponses3(totalAmount);
 
 		return new SettlementDetailResponse(6L, "팀 회의", totalAmount, LocalDate.of(2024, 7, 1), LocalDate.of(2024, 7, 1),
@@ -72,42 +72,42 @@ public class GetGroupSettlementDetailMockData {
 	}
 
 	public static SettlementDetailResponse getSettlementDetailResponse2ForGroup3() {
-		int totalAmount = 60000;
+		long totalAmount = 60000L;
 		List<GroupParticipantResponse> participationResponses = getGroupParticipantResponses3(totalAmount);
 
 		return new SettlementDetailResponse(7L, "팀 디너", totalAmount, LocalDate.of(2024, 7, 1), LocalDate.of(2024, 7, 1),
 			"삼성역 코엑스", participationResponses);
 	}
 
-	private static List<GroupParticipantResponse> getGroupParticipantResponses1(int totalAmount) {
+	private static List<GroupParticipantResponse> getGroupParticipantResponses1(long totalAmount) {
 		return calculateParticipantAmounts(
-			List.of(new GroupParticipantResponse(1L, "민선", 0), new GroupParticipantResponse(2L, "나은", 0),
-				new GroupParticipantResponse(3L, "해성", 0), new GroupParticipantResponse(4L, "한비", 0),
-				new GroupParticipantResponse(5L, "나영", 0), new GroupParticipantResponse(6L, "건", 0)), totalAmount);
+			List.of(new GroupParticipantResponse(1L, "민선", 0L), new GroupParticipantResponse(2L, "나은", 0L),
+				new GroupParticipantResponse(3L, "해성", 0L), new GroupParticipantResponse(4L, "한비", 0L),
+				new GroupParticipantResponse(5L, "나영", 0L), new GroupParticipantResponse(6L, "건", 0L)), totalAmount);
 	}
 
-	private static List<GroupParticipantResponse> getGroupParticipantResponses2(int totalAmount) {
+	private static List<GroupParticipantResponse> getGroupParticipantResponses2(long totalAmount) {
 		return calculateParticipantAmounts(
-			List.of(new GroupParticipantResponse(1L, "민선", 0), new GroupParticipantResponse(8L, "영희", 0),
-				new GroupParticipantResponse(9L, "길동", 0)), totalAmount);
+			List.of(new GroupParticipantResponse(1L, "민선", 0L), new GroupParticipantResponse(8L, "영희", 0L),
+				new GroupParticipantResponse(9L, "길동", 0L)), totalAmount);
 	}
 
-	private static List<GroupParticipantResponse> getGroupParticipantResponses3(int totalAmount) {
+	private static List<GroupParticipantResponse> getGroupParticipantResponses3(long totalAmount) {
 		return calculateParticipantAmounts(
-			List.of(new GroupParticipantResponse(1L, "민선", 0), new GroupParticipantResponse(11L, "정훈", 0),
-				new GroupParticipantResponse(12L, "상현", 0)), totalAmount);
+			List.of(new GroupParticipantResponse(1L, "민선", 0L), new GroupParticipantResponse(11L, "정훈", 0L),
+				new GroupParticipantResponse(12L, "상현", 0L)), totalAmount);
 	}
 
 	private static List<GroupParticipantResponse> calculateParticipantAmounts(List<GroupParticipantResponse> members,
-		int totalAmount) {
-		int numberOfMembers = members.size();
-		int baseAmount = totalAmount / numberOfMembers;
-		int remainder = totalAmount % numberOfMembers;
+		long totalAmount) {
+		long numberOfMembers = members.size();
+		long baseAmount = totalAmount / numberOfMembers;
+		long remainder = totalAmount % numberOfMembers;
 
 		List<GroupParticipantResponse> responses = new ArrayList<>();
 		for (int i = 0; i < members.size(); i++) {
 			GroupParticipantResponse member = members.get(i);
-			int amount = baseAmount + (i < remainder ? 1 : 0);
+			long amount = baseAmount + (i < remainder ? 1 : 0);
 			responses.add(new GroupParticipantResponse(member.getId(), member.getName(), amount));
 		}
 		return responses;

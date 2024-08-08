@@ -39,13 +39,13 @@ public class GetGroupSettlementMockData {
 
 	private static List<GroupSettlementListResponse> getGroupSettlementListResponsesForGroup1() {
 		GroupSettlementListResponse settlementResponse1 = new GroupSettlementListResponse(
-			1L, "1차 회식", 70000, LocalDate.of(2024, 5, 12)
+			1L, "1차 회식", 70000L, LocalDate.of(2024, 5, 12)
 		);
 		GroupSettlementListResponse settlementResponse2 = new GroupSettlementListResponse(
-			2L, "2차 회식", 80000, LocalDate.of(2024, 5, 12)
+			2L, "2차 회식", 80000L, LocalDate.of(2024, 5, 12)
 		);
 		GroupSettlementListResponse settlementResponse3 = new GroupSettlementListResponse(
-			3L, "3차 회식", 90000, LocalDate.of(2024, 5, 12)
+			3L, "3차 회식", 90000L, LocalDate.of(2024, 5, 12)
 		);
 
 		return List.of(settlementResponse1, settlementResponse2, settlementResponse3);
@@ -77,10 +77,10 @@ public class GetGroupSettlementMockData {
 
 	private static List<GroupSettlementListResponse> getGroupSettlementListResponsesForGroup2() {
 		GroupSettlementListResponse settlementResponse1 = new GroupSettlementListResponse(
-			4L, "첫 모임 1차", 60000, LocalDate.of(2024, 6, 23)
+			4L, "첫 모임 1차", 60000L, LocalDate.of(2024, 6, 23)
 		);
 		GroupSettlementListResponse settlementResponse2 = new GroupSettlementListResponse(
-			5L, "첫 모임 2차", 70000, LocalDate.of(2024, 6, 23)
+			5L, "첫 모임 2차", 70000L, LocalDate.of(2024, 6, 23)
 		);
 
 		return List.of(settlementResponse1, settlementResponse2);
@@ -102,10 +102,10 @@ public class GetGroupSettlementMockData {
 
 	private static List<GroupSettlementListResponse> getGroupSettlementListResponsesForGroup3() {
 		GroupSettlementListResponse settlementResponse1 = new GroupSettlementListResponse(
-			6L, "팀 회의", 50000, LocalDate.of(2024, 7, 1)
+			6L, "팀 회의", 50000L, LocalDate.of(2024, 7, 1)
 		);
 		GroupSettlementListResponse settlementResponse2 = new GroupSettlementListResponse(
-			7L, "팀 디너", 60000, LocalDate.of(2024, 7, 1)
+			7L, "팀 디너", 60000L, LocalDate.of(2024, 7, 1)
 		);
 
 		return List.of(settlementResponse1, settlementResponse2);
