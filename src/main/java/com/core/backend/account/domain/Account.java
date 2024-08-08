@@ -44,4 +44,8 @@ public class Account {
     public static Account of(String bankName, String accountNumber, User user) {
         return new Account(bankName, accountNumber, user);
     }
+
+    public boolean setMainAccount(boolean mark) {
+        return this.mainAccount = mark;
+    }
 }
