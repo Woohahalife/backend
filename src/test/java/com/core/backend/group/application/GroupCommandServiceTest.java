@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.core.backend.auth.ui.dto.AuthUser;
 import com.core.backend.group.GroupServiceTestFixture;
@@ -15,7 +14,6 @@ import com.core.backend.user.domain.User;
 class GroupCommandServiceTest extends GroupServiceTestFixture {
 
 	@Test
-	@Transactional // 트랜잭션 내부에서 지연로딩된 컬렉션을 조회할 필요가 있음 
 	@DisplayName("모임방을 생성한다.")
 	void registerGroupTest() {
 		// given

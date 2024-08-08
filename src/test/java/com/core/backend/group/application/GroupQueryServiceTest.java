@@ -6,7 +6,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.core.backend.auth.ui.dto.AuthUser;
 import com.core.backend.group.GroupServiceTestFixture;
@@ -17,7 +16,6 @@ import com.core.backend.user.domain.User;
 class GroupQueryServiceTest extends GroupServiceTestFixture {
 
 	@Test
-	@Transactional
 	@DisplayName("사용자가 참여한 방목록을 조회할 수 있다.")
 	void getAllGroupTest() {
 		// given
