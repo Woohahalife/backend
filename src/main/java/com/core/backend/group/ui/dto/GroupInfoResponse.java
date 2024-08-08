@@ -21,7 +21,7 @@ public class GroupInfoResponse {
 	private int numOfParticipantCount;
 	private boolean bookmark;
 
-	public static GroupInfoResponse convertFromGroup(Group group) {
+	public static GroupInfoResponse from(Group group) {
 		return new GroupInfoResponse(
 			group.getId(),
 			group.getGroupName(),

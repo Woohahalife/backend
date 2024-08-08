@@ -30,6 +30,6 @@ public class GroupRepositoryImpl implements GroupRepository {
 	@Override
 	public Group findById(Long groupId) {
 		return repository.findById(groupId)
-			.orElseThrow(() -> new GroupException(ErrorCode.NOT_VALID_GROUP));
+			.orElseThrow(() -> new GroupException(ErrorCode.NOT_FOUND_GROUP));
 	}
 }

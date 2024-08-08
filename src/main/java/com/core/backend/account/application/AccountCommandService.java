@@ -7,6 +7,7 @@ import com.core.backend.account.application.dto.AccountRegisterServiceRequest;
 import com.core.backend.account.domain.Account;
 import com.core.backend.account.domain.repository.AccountRepository;
 import com.core.backend.account.exception.AccountException;
+import com.core.backend.account.ui.dto.AccountMarkResponse;
 import com.core.backend.common.exception.ErrorCode;
 import com.core.backend.user.domain.User;
 import com.core.backend.user.domain.repository.UserRepository;
@@ -35,5 +36,17 @@ public class AccountCommandService {
 		if(accountRepository.existByAccountNumber(request.getAccountNumber())) {
 			throw new AccountException(ErrorCode.DUPLICATE_ACCOUNT_NUMBER);
 		}
+	}
+
+	public AccountMarkResponse setAccountMark(Long userId, Long accountId) {
+		Account account = accountRepository.findByIdAndUserId(accountId, userId);
+		account.setMainAccount(true);
+		return AccountMarkResponse.from(account);
+	}
+
+	public AccountMarkResponse unsetAccountMark(Long userId, Long accountId) {
+		Account account = accountRepository.findByIdAndUserId(accountId, userId);
+		account.setMainAccount(false);
+		return AccountMarkResponse.from(account);
 	}
 }
