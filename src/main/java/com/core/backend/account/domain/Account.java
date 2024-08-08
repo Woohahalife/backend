@@ -16,6 +16,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "bank_code", nullable = false)
     private BankCode bankCode;
 
@@ -32,10 +33,15 @@ public class Account {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Account(BankCode bankCode, Long balance, String accountNumber) {
-        this.bankCode = bankCode;
-        this.balance = balance;
+    public Account(String bankName, String accountNumber, User user) {
+        this.bankCode = BankCode.valueOfBankName(bankName);
+        this.balance = 10000000L; // 일괄적으로 1000만원 보유 (dummy data)
         this.accountNumber = accountNumber;
         this.mainAccount = false;
+        this.user = user;
+    }
+
+    public static Account of(String bankName, String accountNumber, User user) {
+        return new Account(bankName, accountNumber, user);
     }
 }
