@@ -39,7 +39,7 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 			Assertions.assertThat(testAccount).isNotNull();
 			Assertions.assertThat(testAccount.getUser())
 				.extracting("id")
-				.isEqualTo(1L);
+				.isEqualTo(user.getId());
 		});
 	}
 
