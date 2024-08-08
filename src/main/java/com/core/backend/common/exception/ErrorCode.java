@@ -12,6 +12,7 @@ public enum ErrorCode {
 	DUPLICATE_EMAIL(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 이메일입니다."),
 	DUPLICATE_PHONE_NUMBER(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 휴대폰 번호입니다."),
 	DUPLICATE_ACCOUNT_NUMBER(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 계좌번호 입니다."),
+	ALREADY_ENTRANCE_USER(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "이미 입장한 사용자입니다."),
 
 	NOT_FOUND_ACCOUNT(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당하는 계좌 정보가 존재하지 않습니다"),
 	NOT_FOUND_SETTLEMENT(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당하는 정산 정보가 존재하지 않습니다"),

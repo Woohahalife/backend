@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.core.backend.common.entity.Status;
 import com.core.backend.common.exception.ErrorCode;
 import com.core.backend.group.domain.Group;
+import com.core.backend.group.domain.InvitationCode;
 import com.core.backend.group.domain.repository.GroupRepository;
 import com.core.backend.group.exception.GroupException;
 
@@ -28,8 +30,14 @@ public class GroupRepositoryImpl implements GroupRepository {
 	}
 
 	@Override
-	public Group findById(Long groupId) {
+	public Group findById(final Long groupId) {
 		return repository.findById(groupId)
+			.orElseThrow(() -> new GroupException(ErrorCode.NOT_FOUND_GROUP));
+	}
+
+	@Override
+	public Group findByInvitationCodeAndStatus(final String invitationCode, final Status status) {
+		return repository.findByInvitationCode_CodeAndStatus(invitationCode, status)
 			.orElseThrow(() -> new GroupException(ErrorCode.NOT_FOUND_GROUP));
 	}
 }
