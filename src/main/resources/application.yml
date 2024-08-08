@@ -3,6 +3,7 @@ spring:
     import:
       - classpath:/backend-secret/application-local.yml
       - classpath:/backend-secret/application-dev.yml
+      - classpath:/backend-secret/application-test.yml
   profiles:
     default: dev
     active: dev
