@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.core.backend.account.AccountServiceTestFixture;
 import com.core.backend.account.application.dto.AccountRegisterServiceRequest;
@@ -16,6 +17,7 @@ import com.core.backend.user.domain.User;
 class AccountCommandServiceTest extends AccountServiceTestFixture {
 
 	@Test
+	@Transactional
 	@DisplayName("사용자의 결제 계좌를 등록한다.")
 	void registerAccountTest() {
 		// given
@@ -42,6 +44,7 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 	}
 
 	@Test
+	@Transactional
 	@DisplayName("중복되는 계좌번호가 존재할 경우 예외가 발생한다.")
 	void duplicateAccountNumberException() {
 		User user = User.of("test@email.com", "password", "test", "01011111111");
