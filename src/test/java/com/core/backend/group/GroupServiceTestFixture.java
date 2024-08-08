@@ -8,7 +8,13 @@ import com.core.backend.group.application.GroupQueryService;
 import com.core.backend.group.infra.JpaGroupRepository;
 import com.core.backend.user.infra.database.JpaUserRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 public abstract class GroupServiceTestFixture extends ServiceTestEnvSupport {
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Autowired
 	protected GroupCommandService groupCommandService;

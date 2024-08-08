@@ -8,7 +8,13 @@ import com.core.backend.account.application.AccountQueryService;
 import com.core.backend.account.infra.JpaAccountRepository;
 import com.core.backend.user.infra.database.JpaUserRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 public class AccountServiceTestFixture extends ServiceTestEnvSupport {
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Autowired
 	protected AccountCommandService accountCommandService;
