@@ -33,7 +33,7 @@ public class AccountController {
 		@RequestBody AccountRegisterRequest request) {
 
 		accountCommandService.registerAccount(authUser.getUserId(),
-			AccountRegisterServiceRequest.ofCreate(request.getBankName(), request.getAccountNumber()));
+			AccountRegisterServiceRequest.of(request.getBankName(), request.getAccountNumber()));
 
 		return ResultResponse.success();
 	}

@@ -1,7 +1,5 @@
 package com.core.backend.account.application.dto;
 
-import com.core.backend.group.application.dto.GroupRegisterServiceRequest;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +13,7 @@ public class AccountRegisterServiceRequest {
 	private String bankName;
 	private String accountNumber;
 
-	public static AccountRegisterServiceRequest ofCreate(String bankName, String accountNumber) {
+	public static AccountRegisterServiceRequest of(String bankName, String accountNumber) {
 		return new AccountRegisterServiceRequest(bankName, accountNumber);
 	}
 }

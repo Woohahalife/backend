@@ -34,7 +34,6 @@ public class GroupQueryService {
 	private final SettlementRepository settlementRepository;
 
 	public List<GroupInfoResponse> getAllGroup(Long userId) {
-
 		List<Group> groupList = userGroupRepository.findAllByUserId(userId).stream()
 			.map(UserGroup::getGroup)
 			.toList();
@@ -45,7 +44,6 @@ public class GroupQueryService {
 	}
 
 	public GroupSettlementResponse getGroupSettlements(Long userId, Long groupId) {
-
 		validateGroupMember(userId, groupId);
 
 		List<User> users = userGroupRepository.findAllByGroupId(groupId)

@@ -24,7 +24,7 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 		User user = User.of("test@email.com", "password", "test", "01011111111");
 		userRepository.save(user);
 
-		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.ofCreate("국민은행", "testNumber");
+		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.of("국민은행", "testNumber");
 
 		// when
 		accountCommandService.registerAccount(user.getId(), request);
@@ -53,7 +53,7 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 		Account account = Account.of("국민은행", "testNumber", user);
 		accountRepository.save(account);
 
-		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.ofCreate("국민은행", "testNumber");
+		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.of("국민은행", "testNumber");
 
 	    // when & then
 		assertThatThrownBy(() -> accountCommandService.registerAccount(user.getId(), request))
