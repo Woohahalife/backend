@@ -79,5 +79,4 @@ public class User extends BaseEntity {
 	public boolean checkPassword(String password, PasswordEncryptor passwordEncoder) {
 		return this.password.decode(passwordEncoder).equals(password);
 	}
-
 }

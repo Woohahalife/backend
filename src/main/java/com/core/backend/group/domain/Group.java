@@ -2,8 +2,11 @@ package com.core.backend.group.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.core.backend.common.entity.BaseEntity;
+import com.core.backend.settlement.domain.Settlement;
+import com.core.backend.settlement.domain.SettlementStatus;
 import com.core.backend.user.domain.User;
 import com.core.backend.usergroup.domain.UserGroup;
 
@@ -67,5 +70,4 @@ public class Group extends BaseEntity {
 		this.invitationCode.generateRandomCode();
 		return this.invitationCode.getCode();
 	}
-
 }
