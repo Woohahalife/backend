@@ -1,7 +1,6 @@
 package com.core.backend.user.infra.database;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -43,7 +42,7 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public User findById(Long authUser) {
 		return repository.findById(authUser)
-			.orElseThrow(() -> new UserException(ErrorCode.NOT_VALID_USER));
+			.orElseThrow(() -> new UserException(ErrorCode.NOT_FOUND_USER));
 	}
 
 	@Override

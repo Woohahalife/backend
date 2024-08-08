@@ -1,12 +1,15 @@
 package com.core.backend.account.ui;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.core.backend.account.application.AccountCommandService;
 import com.core.backend.account.application.AccountQueryService;
 import com.core.backend.account.application.dto.AccountRegisterServiceRequest;
+import com.core.backend.account.ui.dto.AccountMarkResponse;
 import com.core.backend.account.ui.dto.AccountRegisterRequest;
 import com.core.backend.auth.ui.dto.AuthUser;
 import com.core.backend.auth.util.Authenticated;
@@ -34,4 +37,21 @@ public class AccountController {
 
 		return ResultResponse.success();
 	}
+
+	@PutMapping("/api/accounts/{accountId}/mark")
+	@Operation(summary = "사용자 대표계좌 등록 api", description = "사용자가 보유한 계좌를 대표계좌로 등록할 수 있다.")
+	public ResultResponse<AccountMarkResponse> setAccountMark(@Authenticated AuthUser authUser, @PathVariable Long accountId) {
+		AccountMarkResponse response = accountCommandService.setAccountMark(authUser.getUserId(), accountId);
+
+		return ResultResponse.success(response);
+	}
+
+	@PutMapping("/api/accounts/{accountId}/unmark")
+	@Operation(summary = "사용자 대표계좌 등록 해제 api", description = "사용자가 보유한 대표 계좌를 해제할 수 있다.")
+	public ResultResponse<AccountMarkResponse> unsetAccountMark(@Authenticated AuthUser authUser, @PathVariable Long accountId) {
+		AccountMarkResponse response = accountCommandService.unsetAccountMark(authUser.getUserId(), accountId);
+
+		return ResultResponse.success(response);
+	}
+
 }

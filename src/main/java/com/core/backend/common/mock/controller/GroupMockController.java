@@ -21,9 +21,9 @@ import io.swagger.v3.oas.annotations.Operation;
 @RestController
 public class GroupMockController {
 
-	@PostMapping("/mock/groups")
+	@GetMapping("/mock/groups")
 	@Operation(summary = "사용자가 참여한 모임방 조회 api", description = "사용자가 참여한 모임방 목록을 조회한다.")
-	public ResultResponse<List<GroupInfoResponse>> getAllGroup(@RequestBody GroupRegisterRequest request) {
+	public ResultResponse<List<GroupInfoResponse>> getAllGroup() {
 		List<GroupInfoResponse> responses = GetAllGroupMockData.mockData();
 
 		return ResultResponse.success(responses);

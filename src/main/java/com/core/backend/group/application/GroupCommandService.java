@@ -9,6 +9,8 @@ import com.core.backend.group.domain.repository.GroupRepository;
 import com.core.backend.group.ui.dto.GroupInviteResponse;
 import com.core.backend.user.domain.User;
 import com.core.backend.user.domain.repository.UserRepository;
+import com.core.backend.usergroup.domain.UserGroup;
+import com.core.backend.usergroup.domain.repository.UserGroupRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,7 @@ public class GroupCommandService {
 
 	private final GroupRepository groupRepository;
 	private final UserRepository userRepository;
+	private final UserGroupRepository userGroupRepository;
 
 	public void createGroup(Long userId, GroupRegisterServiceRequest request) {
 		User user = userRepository.findById(userId);
@@ -31,11 +34,9 @@ public class GroupCommandService {
 	}
 
 	public GroupInviteResponse generateInviteCode(Long userId, Long groupId) {
-		// TODO : 해당 사용자가 참석한 group인지 확인하기 위해 변경 필요
-		Group group = groupRepository.findById(groupId);
+		Group group = userGroupRepository.findByGroupIdAndUserId(groupId, userId).getGroup();
 
 		// 참여코드 생성
-
-		return GroupInviteResponse.of(group.generateInviteCode());
+		return GroupInviteResponse.from(group.generateInviteCode());
 	}
 }

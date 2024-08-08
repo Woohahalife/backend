@@ -7,4 +7,6 @@ public interface AccountRepository {
 	Account save(final Account account);
 
 	boolean existByAccountNumber(final String accountNumber);
+
+	Account findByIdAndUserId(final Long accountId, final Long userId);
 }

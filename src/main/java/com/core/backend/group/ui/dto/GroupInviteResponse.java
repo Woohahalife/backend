@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class GroupInviteResponse {
 	private String invitationCode;
 
-	public static GroupInviteResponse of(String invitationCode) {
+	public static GroupInviteResponse from(String invitationCode) {
 		return new GroupInviteResponse(invitationCode);
 	}
 }
