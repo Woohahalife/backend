@@ -5,4 +5,6 @@ import java.util.List;
 public interface SettlementRepository {
 
 	List<Settlement> findByGroupIdAndStatus(final Long groupId, final SettlementStatus status);
+
+	Settlement findById(final Long settlementId);
 }

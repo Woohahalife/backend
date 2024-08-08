@@ -14,6 +14,7 @@ public enum ErrorCode {
 	DUPLICATE_ACCOUNT_NUMBER(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "중복되는 계좌번호 입니다."),
 
 	NOT_FOUND_ACCOUNT(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당하는 계좌 정보가 존재하지 않습니다"),
+	NOT_FOUND_SETTLEMENT(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당하는 정산 정보가 존재하지 않습니다"),
 	BANK_IS_NOT_FOUND(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value() ,"일치하는 은행이 없습니다."),
 	NOT_FOUND_USER(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "유효한 사용자를 찾을 수 없습니다."),
 	NOT_FOUND_GROUP(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "유효한 모임방을 찾을 수 없습니다."),
