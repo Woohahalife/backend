@@ -3,6 +3,7 @@ package com.core.backend.settlement.domain;
 import java.time.LocalDate;
 
 import com.core.backend.group.domain.Group;
+import com.core.backend.settlement.application.dto.SettlementRegisterServiceRequest;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,9 +42,6 @@ public class Settlement {
 	@Column(name = "settlement_status", nullable = false)
 	private SettlementStatus settlementStatus;
 
-	@Column(name = "qrcode")
-	private String qrcode;
-
 	@Column(name = "grouping_at", nullable = false)
 	private LocalDate groupingAt;
 
@@ -61,16 +59,28 @@ public class Settlement {
 	private Settlement(String settlementName,
 		Long totalAmount,
 		SettlementStatus settlementStatus,
-		String qrcode,
 		LocalDate groupingAt,
 		LocalDate settlementAt,
-		String settlementPlace) {
+		String settlementPlace,
+		Group group) {
 		this.settlementName = settlementName;
 		this.totalAmount = totalAmount;
 		this.settlementStatus = settlementStatus;
-		this.qrcode = qrcode;
 		this.groupingAt = groupingAt;
 		this.settlementAt = settlementAt;
 		this.settlementPlace = settlementPlace;
+		this.group = group;
+	}
+
+	public static Settlement createSettlement(SettlementRegisterServiceRequest request, Group group) {
+		return Settlement.builder()
+			.settlementName(request.getSettlementName())
+			.totalAmount(request.getTotalAmount())
+			.settlementStatus(SettlementStatus.OPEN)
+			.groupingAt(request.getGroupingAt())
+			.settlementAt(request.getSettlementAt())
+			.settlementPlace(request.getSettlementPlace())
+			.group(group)
+			.build();
 	}
 }

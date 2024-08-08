@@ -1,6 +1,7 @@
 package com.core.backend.participant.domain;
 
 import com.core.backend.settlement.domain.Settlement;
+import com.core.backend.user.domain.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Table(name = "participant ")
+@Table(name = "participant")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Participant {
 
@@ -38,9 +39,30 @@ public class Participant {
 	@JoinColumn(name = "settlement_id", nullable = false)
 	private Settlement settlement;
 
-	public Participant(String participantName, Long paymentAmount) {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	public Participant(String participantName, Long paymentAmount, User user, Settlement settlement) {
 		this.participantName = participantName;
 		this.paymentAmount = paymentAmount;
 		this.agreementStatus = false;
+		this.user = user;
+		this.settlement = settlement;
+	}
+
+	public static Participant of(String participantName, Long paymentAmount, User user, Settlement settlement) {
+		return new Participant(
+			participantName,
+			paymentAmount,
+			user,
+			settlement
+		);
+	}
+
+	public void markAsAgreed() {
+		if (!this.agreementStatus) {
+			this.agreementStatus = true;
+		}
 	}
 }

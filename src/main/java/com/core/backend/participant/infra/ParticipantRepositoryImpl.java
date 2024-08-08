@@ -19,4 +19,9 @@ public class ParticipantRepositoryImpl implements ParticipantRepository {
 	public List<Participant> findAllBySettlementId(Long settlementId) {
 		return repository.findAllBySettlementId(settlementId);
 	}
+
+	@Override
+	public List<Participant> saveAll(List<Participant> participants) {
+		return repository.saveAll(participants);
+	}
 }
