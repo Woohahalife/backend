@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.core.backend.RepositoryTestEnvSupport;
 import com.core.backend.config.AuditingConfig;
 import com.core.backend.group.domain.Group;
 import com.core.backend.group.infra.JpaGroupRepository;
@@ -20,10 +21,8 @@ import com.core.backend.user.domain.User;
 import com.core.backend.user.infra.database.JpaUserRepository;
 import com.core.backend.usergroup.domain.UserGroup;
 
-@ActiveProfiles("test")
-@DataJpaTest
-@Import(AuditingConfig.class)
-class JpaUserGroupRepositoryTest {
+
+class JpaUserGroupRepositoryTest extends RepositoryTestEnvSupport {
 
 	@Autowired
 	private JpaUserRepository userRepository;
