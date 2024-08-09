@@ -21,7 +21,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Getter
 @Table(name = "settlement")
@@ -82,5 +81,11 @@ public class Settlement {
 			.settlementPlace(request.getSettlementPlace())
 			.group(group)
 			.build();
+	}
+
+	public void statusInProgress() {
+		if (this.settlementStatus.equals(SettlementStatus.OPEN)) {
+			this.settlementStatus = SettlementStatus.IN_PROGRESS;
+		}
 	}
 }

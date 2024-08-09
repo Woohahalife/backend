@@ -47,8 +47,6 @@ public class SettlementCommandService {
 			.forEach(Participant::markAsAgreed);
 
 		participantRepository.saveAll(participants);
-
-		// TODO : Settlement OPEN -> IN_PROGRESS 상태 변경 event 처리 필요
 	}
 
 	private Map<Long, SettlementParticipantServiceRequest> getDataMap(SettlementRegisterServiceRequest request) {
