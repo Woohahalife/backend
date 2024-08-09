@@ -1,7 +1,6 @@
 package com.core.backend.settlement.ui;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.core.backend.auth.ui.dto.AuthUser;
 import com.core.backend.auth.util.Authenticated;
-import com.core.backend.common.mock.data.GetGroupSettlementDetailMockData;
 import com.core.backend.common.mock.data.RequestSettlementMockData;
 import com.core.backend.common.repsonse.ResultResponse;
 import com.core.backend.settlement.application.SettlementCommandService;
 import com.core.backend.settlement.application.SettlementQueryService;
+import com.core.backend.settlement.application.dto.SettlementRegisterServiceRequest;
 import com.core.backend.settlement.ui.dto.SettlementDetailResponse;
 import com.core.backend.settlement.ui.dto.SettlementParticipantResponse;
 import com.core.backend.settlement.ui.dto.SettlementRegisterRequest;
@@ -38,12 +37,16 @@ public class SettlementController {
 		return ResultResponse.success(response);
 	}
 
-	@PostMapping("/settlements/request")
+	@PostMapping("/settlements/{groupId}/request")
 	@Operation(summary = "모임방 정산 요청(정산 생성) api", description = "새로운 정산을 요청(생성)한다.")
-	public ResultResponse<Void> requestSettlement(@RequestBody SettlementRegisterRequest request) {
+	public ResultResponse<Void> requestSettlement(
+		@Authenticated AuthUser authUser,
+		@PathVariable Long groupId,
+		@RequestBody SettlementRegisterRequest request) {
 		RequestSettlementMockData.saveSettlement(request);
+		settlementCommandService.requestSettlement(authUser.getUserId(), groupId, SettlementRegisterServiceRequest.of(request));
 
-		return ResultResponse.success(null);
+		return ResultResponse.success();
 	}
 
 	@GetMapping("/settlements/{settlementId}/participants")

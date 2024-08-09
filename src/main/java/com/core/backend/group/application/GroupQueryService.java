@@ -1,7 +1,6 @@
 package com.core.backend.group.application;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -50,7 +49,7 @@ public class GroupQueryService {
 			.stream().map(UserGroup::getUser)
 			.toList();
 
-		List<Settlement> settlements = settlementRepository.findByGroupIdAndStatus(groupId, SettlementStatus.SUCCESS);
+		List<Settlement> settlements = settlementRepository.findAllByGroupIdAndStatus(groupId, SettlementStatus.SUCCESS);
 
 		return GroupSettlementResponse.of(users, settlements);
 	}

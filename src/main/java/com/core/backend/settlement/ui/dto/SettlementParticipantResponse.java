@@ -12,6 +12,6 @@ public class SettlementParticipantResponse {
 
     private Long id;
     private String participantName;
-    private int paymentAmount;
+    private Long paymentAmount;
     private boolean agreementStatus;
 }

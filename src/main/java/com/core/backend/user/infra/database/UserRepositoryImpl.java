@@ -49,4 +49,9 @@ public class UserRepositoryImpl implements UserRepository {
 	public List<User> saveAll(List<User> users) {
 		return repository.saveAll(users);
 	}
+
+	@Override
+	public List<User> findAllById(final List<Long> ids) {
+		return repository.findAllById(ids);
+	}
 }

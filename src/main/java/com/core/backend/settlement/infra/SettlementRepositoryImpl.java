@@ -19,7 +19,7 @@ public class SettlementRepositoryImpl implements SettlementRepository {
 	private final JpaSettlementRepository repository;
 
 	@Override
-	public List<Settlement> findByGroupIdAndStatus(final Long groupId, final SettlementStatus status) {
+	public List<Settlement> findAllByGroupIdAndStatus(final Long groupId, final SettlementStatus status) {
 		return repository.findAllByGroupIdAndSettlementStatus(groupId, status);
 	}
 
@@ -27,5 +27,10 @@ public class SettlementRepositoryImpl implements SettlementRepository {
 	public Settlement findById(Long settlementId) {
 		return repository.findById(settlementId)
 			.orElseThrow(() -> new SettlementException(ErrorCode.NOT_FOUND_SETTLEMENT));
+	}
+
+	@Override
+	public Settlement save(Settlement settlement) {
+		return repository.save(settlement);
 	}
 }

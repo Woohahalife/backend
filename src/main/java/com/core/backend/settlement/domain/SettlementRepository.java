@@ -4,7 +4,10 @@ import java.util.List;
 
 public interface SettlementRepository {
 
-	List<Settlement> findByGroupIdAndStatus(final Long groupId, final SettlementStatus status);
+	List<Settlement> findAllByGroupIdAndStatus(final Long groupId, final SettlementStatus status);
 
 	Settlement findById(final Long settlementId);
+
+	Settlement save(Settlement settlement);
+
 }
