@@ -12,13 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Table(name = "participant")
+@Table(name = "participant", uniqueConstraints = @UniqueConstraint(columnNames = {"settlement_id", "user_id"}))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Participant {
 
