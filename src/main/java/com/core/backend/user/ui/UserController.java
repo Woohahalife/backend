@@ -36,7 +36,7 @@ public class UserController {
 		return ResultResponse.success();
 	}
 
-	@GetMapping("/api/users")
+	@GetMapping("/users")
 	@Operation(summary = "사용자 마이페이지 정보 조회 api", description = "사용자 마이페이지 조회 기능을 제공한다.")
 	public ResultResponse<UserMyPageResponse> getMyPage(@Authenticated AuthUser authUser) {
 		log.info("[UserController -> Called : getMyPage] 사용자 마이페이지 api 동작");
