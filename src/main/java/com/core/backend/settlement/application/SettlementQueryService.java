@@ -56,7 +56,7 @@ public class SettlementQueryService {
 
 	public RequestedSettlementResponse getRequestedSettlement(Long userId) {
 
-		List<Participant> allByUserId = participantRepository.findAllByUserId(userId);
+		List<Participant> allByUserId = participantRepository.findByUserIdAndAgreementStatusFalse(userId);
 
 		Participant requestedParticipant = allByUserId.stream()
 			.filter(participant -> {

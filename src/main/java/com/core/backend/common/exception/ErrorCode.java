@@ -23,6 +23,8 @@ public enum ErrorCode {
 	NOT_FOUND_GROUP_MEMBER(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당 모임에 참여한 사용자가 아닙니다."),
 	NOT_FOUND_SETTLEMENT_PARTICIPANT(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당 정산에 참여한 참가자가 아닙니다."),
 
+	CONFLICT(HttpStatus.CONFLICT, HttpStatus.Series.CLIENT_ERROR.value(), "중복된 데이터 항목이 감지되었습니다.(무결성 제약 조건 위반)"),
+
 	INVALID_TOKEN_FORMAT(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.value(), "올바른 토큰 형식이 아닙니다."),
 	BAD_CREDENTIALS(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.value(), "사용자 정보가 잘못되었습니다."),
 	EXPIRED_TOKEN(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.value(), "토큰 유효기간이 만료되었습니다."),

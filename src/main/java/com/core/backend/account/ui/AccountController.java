@@ -53,5 +53,4 @@ public class AccountController {
 
 		return ResultResponse.success(response);
 	}
-
 }
