@@ -37,7 +37,7 @@ public class SettlementDetailResponse {
             .settlementPlace(settlement.getSettlementPlace())
             .participaints(
                 participants.stream()
-                .map(GroupParticipantResponse::fromParticipant)
+                .map(GroupParticipantResponse::from)
                 .collect(Collectors.toList())
             )
             .build();
