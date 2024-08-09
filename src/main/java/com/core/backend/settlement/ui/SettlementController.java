@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +15,7 @@ import com.core.backend.common.repsonse.ResultResponse;
 import com.core.backend.settlement.application.SettlementCommandService;
 import com.core.backend.settlement.application.SettlementQueryService;
 import com.core.backend.settlement.application.dto.SettlementRegisterServiceRequest;
+import com.core.backend.settlement.ui.dto.CompletedSettlementResponse;
 import com.core.backend.settlement.ui.dto.RequestedSettlementResponse;
 import com.core.backend.settlement.ui.dto.SettlementDetailResponse;
 import com.core.backend.settlement.ui.dto.SettlementParticipantResponse;
@@ -69,5 +69,16 @@ public class SettlementController {
 		return Optional.ofNullable(settlementQueryService.getRequestedSettlement(authUser.getUserId()))
 			.map(response -> ResultResponse.success(response))
 			.orElseGet(() -> ResultResponse.success());
+	}
+
+	@PostMapping("/settlements/{settlementId}")
+	@Operation(summary = "요청받은 정산 내역 조회 api", description = "요청받은 정산 내역 정보를 조회한다.")
+	ResultResponse<CompletedSettlementResponse> processSettlement(
+		@Authenticated AuthUser authUser,
+		@PathVariable Long settlementId) {
+		CompletedSettlementResponse response = settlementCommandService
+			.processSettlement(authUser.getUserId(), settlementId);
+
+		return ResultResponse.success(response);
 	}
 }

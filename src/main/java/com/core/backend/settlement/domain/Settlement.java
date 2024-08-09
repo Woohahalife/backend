@@ -88,4 +88,10 @@ public class Settlement {
 			this.settlementStatus = SettlementStatus.IN_PROGRESS;
 		}
 	}
+
+	public void completeSettlement() {
+		if (this.settlementStatus.equals(SettlementStatus.OPEN)) {
+			this.settlementStatus = SettlementStatus.SUCCESS;
+		}
+	}
 }

@@ -39,10 +39,34 @@ public class Point {
 	}
 
 	public void increasePoint(Long amount) {
-		if (amount == null || amount > 10000) { // TODO : 최소 환전 금액 기준 세우기(일단 1만원으로 설정함)
+		if (amount == null || amount < 10000) { // TODO : 최소 환전 금액 기준 세우기(일단 1만원으로 설정함)
 			throw new AccountException(ErrorCode.ERROR_AMOUNT_TOO_LOW);
 		}
 
 		this.point += amount;
+	}
+
+	public void decreasePoint(Long amount) {
+		if (amount == null || amount < 10000) { // TODO : 최소 환전 금액 기준 세우기(일단 1만원으로 설정함)
+			throw new AccountException(ErrorCode.ERROR_AMOUNT_TOO_LOW);
+		}
+
+		if(validateSufficientPoint(amount)) {
+			throw new AccountException(ErrorCode.INSUFFICIENT_POINT);
+		}
+
+		this.point -= amount;
+	}
+
+	public void processSettlement(Long amount) {
+		if(validateSufficientPoint(amount)) {
+			throw new AccountException(ErrorCode.INSUFFICIENT_POINT);
+		}
+
+		this.point -= amount;
+	}
+
+	public boolean validateSufficientPoint(Long amount) {
+		return this.point < amount;
 	}
 }

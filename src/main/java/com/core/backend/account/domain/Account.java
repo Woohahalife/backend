@@ -52,7 +52,7 @@ public class Account {
     }
 
     public boolean validateSufficientBalance(Long amount) {
-        return this.balance >= amount;
+        return this.balance < amount;
     }
 
     public void decreaseBalance(Long amount) {
@@ -60,7 +60,7 @@ public class Account {
             throw new AccountException(ErrorCode.ERROR_AMOUNT_TOO_LOW);
         }
 
-        if(!validateSufficientBalance(amount)) {
+        if(validateSufficientBalance(amount)) {
             throw new AccountException(ErrorCode.INSUFFICIENT_BALANCE);
         }
 

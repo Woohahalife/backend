@@ -13,4 +13,6 @@ public interface AccountRepository {
 	boolean existsByUserIdAndMainAccountTrue(final Long userId);
 
 	Account findByUserId(final Long userId);
+
+	Account findByUserIdAndMainAccountTrue(Long userId);
 }
