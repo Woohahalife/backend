@@ -58,7 +58,7 @@ public class User extends BaseEntity {
 
 	public static User of(String email, String password, String name, String phoneNumber) {
 		User user = new User(email, password, name, phoneNumber);
-		Point point = new Point(0L, user);
+		Point point = new Point(user);
 		user.mappingPoint(point);
 		return user;
 	}
