@@ -15,6 +15,7 @@ import com.core.backend.group.application.GroupCommandService;
 import com.core.backend.group.application.GroupQueryService;
 import com.core.backend.group.application.dto.GroupEntranceServiceRequest;
 import com.core.backend.group.application.dto.GroupRegisterServiceRequest;
+import com.core.backend.group.ui.dto.CreateGroupResponse;
 import com.core.backend.group.ui.dto.GroupEntranceRequest;
 import com.core.backend.group.ui.dto.GroupEntranceResponse;
 import com.core.backend.group.ui.dto.GroupInfoResponse;
@@ -36,10 +37,11 @@ public class GroupController {
 
 	@PostMapping("/groups")
 	@Operation(summary = "사용자가 참여할 수있는 모임방 생성 api", description = "사용자가 참여할 수 있는 모임방을 생성한다.")
-	public ResultResponse<Void> createGroup(@Authenticated AuthUser authUser,
+	public ResultResponse<CreateGroupResponse> createGroup(@Authenticated AuthUser authUser,
 		@RequestBody GroupRegisterRequest request) {
 		log.info("[GroupController -> Called : registerGroup] 사용자가 참여할 수있는 모임방 생성 api 동작");
-		groupCommandService.createGroup(authUser.getUserId(), GroupRegisterServiceRequest.from(request.getGroupName()));
+		CreateGroupResponse response =
+			groupCommandService.createGroup(authUser.getUserId(), GroupRegisterServiceRequest.from(request.getGroupName()));
 
 		return ResultResponse.success();
 	}
