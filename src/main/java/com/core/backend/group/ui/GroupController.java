@@ -20,7 +20,9 @@ import com.core.backend.group.ui.dto.GroupEntranceRequest;
 import com.core.backend.group.ui.dto.GroupEntranceResponse;
 import com.core.backend.group.ui.dto.GroupInfoResponse;
 import com.core.backend.group.ui.dto.GroupInviteResponse;
+import com.core.backend.group.ui.dto.GroupMemberResponse;
 import com.core.backend.group.ui.dto.GroupRegisterRequest;
+import com.core.backend.group.ui.dto.GroupSettlementListResponse;
 import com.core.backend.group.ui.dto.GroupSettlementResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -55,11 +57,20 @@ public class GroupController {
 		return ResultResponse.success(responseList);
 	}
 
-	@GetMapping("/groups/{groupId}")
+	@GetMapping("/groups/{groupId}/settlements")
 	@Operation(summary = "기정산 내역 요약 조회 api(모임방 상세 조회)", description = "선택한 모임방에 대해 완료된 정산 내역 목록을 조회한다.")
-	public ResultResponse<GroupSettlementResponse> getGroupSettlements(@Authenticated AuthUser authUser,
+	public ResultResponse<List<GroupSettlementListResponse>> getGroupSettlements(@Authenticated AuthUser authUser,
 		@PathVariable Long groupId) {
-		GroupSettlementResponse response = groupQueryService.getGroupSettlements(authUser.getUserId(), groupId);
+		List<GroupSettlementListResponse> response = groupQueryService.getGroupSettlements(authUser.getUserId(), groupId);
+
+		return ResultResponse.success(response);
+	}
+
+	@GetMapping("/groups/{groupId}/members")
+	@Operation(summary = "모임방 참여 멤버 조회 api(모임방 상세 조회)", description = "선택한 모임방의 참여 멤버를 조회한다.")
+	public ResultResponse<List<GroupMemberResponse>> getGroupMembers(@Authenticated AuthUser authUser,
+		@PathVariable Long groupId) {
+		List<GroupMemberResponse> response = groupQueryService.getGroupMembers(authUser.getUserId(), groupId);
 
 		return ResultResponse.success(response);
 	}

@@ -15,7 +15,7 @@ public class GroupMemberResponse {
 	private Long id;
 	private String memberName;
 
-	public static GroupMemberResponse fromUser(User user) {
+	public static GroupMemberResponse from(User user) {
 		return new GroupMemberResponse(user.getId(), user.getName());
 	}
 }

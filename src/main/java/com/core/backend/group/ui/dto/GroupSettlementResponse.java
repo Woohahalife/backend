@@ -21,11 +21,11 @@ public class GroupSettlementResponse {
 
 	public static GroupSettlementResponse of(List<User> users, List<Settlement> settlements) {
 		List<GroupMemberResponse> groupMemberResponses = users.stream()
-			.map(GroupMemberResponse::fromUser)
+			.map(GroupMemberResponse::from)
 			.collect(Collectors.toList());
 
 		List<GroupSettlementListResponse> settlementResponses = settlements.stream()
-			.map(GroupSettlementListResponse::fromSettlement)
+			.map(GroupSettlementListResponse::from)
 			.collect(Collectors.toList());
 
 		return new GroupSettlementResponse(groupMemberResponses, settlementResponses);
