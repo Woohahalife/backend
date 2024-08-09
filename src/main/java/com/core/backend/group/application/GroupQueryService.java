@@ -11,11 +11,10 @@ import com.core.backend.group.domain.Group;
 import com.core.backend.group.domain.repository.GroupRepository;
 import com.core.backend.group.exception.GroupException;
 import com.core.backend.group.ui.dto.GroupInfoResponse;
-import com.core.backend.group.ui.dto.GroupSettlementResponse;
-import com.core.backend.settlement.domain.Settlement;
+import com.core.backend.group.ui.dto.GroupMemberResponse;
+import com.core.backend.group.ui.dto.GroupSettlementListResponse;
 import com.core.backend.settlement.domain.SettlementRepository;
 import com.core.backend.settlement.domain.SettlementStatus;
-import com.core.backend.user.domain.User;
 import com.core.backend.usergroup.domain.UserGroup;
 import com.core.backend.usergroup.domain.repository.UserGroupRepository;
 
@@ -42,16 +41,21 @@ public class GroupQueryService {
 			.collect(Collectors.toList());
 	}
 
-	public GroupSettlementResponse getGroupSettlements(Long userId, Long groupId) {
+	public List<GroupSettlementListResponse> getGroupSettlements(Long userId, Long groupId) {
 		validateGroupMember(userId, groupId);
 
-		List<User> users = userGroupRepository.findAllByGroupId(groupId)
-			.stream().map(UserGroup::getUser)
+		return settlementRepository.findAllByGroupIdAndStatus(groupId, SettlementStatus.SUCCESS)
+			.stream().map(GroupSettlementListResponse::from).toList();
+	}
+
+	public List<GroupMemberResponse> getGroupMembers(Long userId, Long groupId) {
+		validateGroupMember(userId, groupId);
+
+		return userGroupRepository.findAllByGroupId(groupId)
+			.stream()
+			.map(UserGroup::getUser)
+			.map(GroupMemberResponse::from)
 			.toList();
-
-		List<Settlement> settlements = settlementRepository.findAllByGroupIdAndStatus(groupId, SettlementStatus.SUCCESS);
-
-		return GroupSettlementResponse.of(users, settlements);
 	}
 
 	private void validateGroupMember(Long userId, Long groupId) { // TODO : 테스트 필요
@@ -59,4 +63,5 @@ public class GroupQueryService {
 			throw new GroupException(ErrorCode.NOT_FOUND_GROUP_MEMBER);
 		}
 	}
+
 }

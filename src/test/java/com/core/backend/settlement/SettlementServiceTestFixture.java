@@ -11,6 +11,7 @@ import com.core.backend.group.infra.JpaGroupRepository;
 import com.core.backend.participant.infra.JpaParticipantRepository;
 import com.core.backend.settlement.application.SettlementCommandService;
 import com.core.backend.settlement.application.SettlementQueryService;
+import com.core.backend.settlement.domain.Settlement;
 import com.core.backend.settlement.infra.JpaSettlementRepository;
 import com.core.backend.user.domain.User;
 import com.core.backend.user.infra.database.JpaUserRepository;

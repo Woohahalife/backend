@@ -19,7 +19,7 @@ public class GroupSettlementListResponse {
 	private Long totalPaymentAmount;
 	private LocalDate settlementAt;
 
-	public static GroupSettlementListResponse fromSettlement(Settlement settlement) {
+	public static GroupSettlementListResponse from(Settlement settlement) {
 		return new GroupSettlementListResponse(settlement.getId(),
 			settlement.getSettlementName(),
 			settlement.getTotalAmount(),
