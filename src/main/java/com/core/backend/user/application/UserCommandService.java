@@ -27,7 +27,7 @@ public class UserCommandService {
 		validateDuplicateEmail(request.getEmail());
 		validateDuplicatePhoneNumber(request.getPhoneNumber());
 
-		User user = request.toEntity()
+		User user = User.of(request.getEmail(), request.getPassword(), request.getName(), request.getPhoneNumber())
 			.encode(passwordEncoder);
 
 		userRepository.save(user);

@@ -38,7 +38,11 @@ public class AccountCommandService {
 		}
 	}
 
-	public AccountMarkResponse setAccountMark(Long userId, Long accountId) { // TODO : 대표계좌 이미 있는 경우 예외처리
+	public AccountMarkResponse setAccountMark(Long userId, Long accountId) { // TODO : 대표계좌가 이미 있는 경우 예외처리
+		if(accountRepository.existsByUserIdAndMainAccountTrue(userId)) {
+			throw new AccountException(ErrorCode.ALREADY_REGISTERED_MAIN_ACCOUNT);
+		}
+
 		Account account = accountRepository.findByIdAndUserId(accountId, userId);
 		account.setMainAccount(true);
 		return AccountMarkResponse.from(account);

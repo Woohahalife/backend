@@ -1,5 +1,7 @@
 package com.core.backend.point.domain;
 
+import com.core.backend.account.exception.AccountException;
+import com.core.backend.common.exception.ErrorCode;
 import com.core.backend.user.domain.User;
 
 import jakarta.persistence.Column;
@@ -25,14 +27,22 @@ public class Point {
 	private Long id;
 
 	@Column(name = "point", nullable = false)
-	private Long point = 0L;
+	private Long point;
 
 	@OneToOne
 	@JoinColumn(name = "user_id", nullable = false, unique = true)
 	private User user;
 
-	public Point(Long point, User user) {
-		this.point = point;
+	public Point(User user) {
+		this.point = 0L;
 		this.user = user;
+	}
+
+	public void increasePoint(Long amount) {
+		if (amount == null || amount > 10000) { // TODO : 최소 환전 금액 기준 세우기(일단 1만원으로 설정함)
+			throw new AccountException(ErrorCode.ERROR_AMOUNT_TOO_LOW);
+		}
+
+		this.point += amount;
 	}
 }

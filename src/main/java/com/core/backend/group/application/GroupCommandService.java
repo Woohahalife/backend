@@ -10,6 +10,7 @@ import com.core.backend.group.application.dto.GroupRegisterServiceRequest;
 import com.core.backend.group.domain.Group;
 import com.core.backend.group.domain.repository.GroupRepository;
 import com.core.backend.group.exception.GroupException;
+import com.core.backend.group.ui.dto.CreateGroupResponse;
 import com.core.backend.group.ui.dto.GroupEntranceResponse;
 import com.core.backend.group.ui.dto.GroupInviteResponse;
 import com.core.backend.user.domain.User;
@@ -29,18 +30,20 @@ public class GroupCommandService {
 	private final UserRepository userRepository;
 	private final UserGroupRepository userGroupRepository;
 
-	public void createGroup(Long userId, GroupRegisterServiceRequest request) {
+	public CreateGroupResponse createGroup(Long userId, GroupRegisterServiceRequest request) {
 		User user = userRepository.findById(userId);
+
 		Group group = Group.of(request.getGroupName());
 		group.addUserToGroup(user);
 
 		groupRepository.save(group);
+
+		return CreateGroupResponse.from(group.getId());
 	}
 
 	public GroupInviteResponse generateInviteCode(Long userId, Long groupId) {
 		Group group = userGroupRepository.findByGroupIdAndUserId(groupId, userId).getGroup();
 
-		// 참여코드 생성
 		return GroupInviteResponse.from(group.generateInviteCode());
 	}
 
