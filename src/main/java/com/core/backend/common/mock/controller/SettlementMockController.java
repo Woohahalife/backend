@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.core.backend.common.mock.data.GetGroupSettlementDetailMockData;
 import com.core.backend.common.mock.data.RequestSettlementMockData;
+import com.core.backend.common.mock.dto.SettlementRegisterMockRequest;
 import com.core.backend.common.repsonse.ResultResponse;
 import com.core.backend.settlement.ui.dto.SettlementDetailResponse;
 import com.core.backend.settlement.ui.dto.SettlementParticipantResponse;
@@ -33,7 +34,7 @@ public class SettlementMockController {
 
 	@PostMapping("/mock/settlements/request")
 	@Operation(summary = "모임방 정산 요청(정산 생성) api", description = "새로운 정산을 요청(생성)한다.")
-	public ResultResponse<Void> requestSettlement(@RequestBody SettlementRegisterRequest request) {
+	public ResultResponse<Void> requestSettlement(@RequestBody SettlementRegisterMockRequest request) {
 
 		RequestSettlementMockData.saveSettlement(request);
 

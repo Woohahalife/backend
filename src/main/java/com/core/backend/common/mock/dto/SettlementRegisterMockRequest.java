@@ -1,18 +1,21 @@
-package com.core.backend.settlement.ui.dto;
+package com.core.backend.common.mock.dto;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.core.backend.settlement.ui.dto.SettlementParticipantRequest;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.List;
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class SettlementRegisterRequest {
+public class SettlementRegisterMockRequest {
 
+    private Long id; // mockData 저장을 위한 임의 프로퍼티
     private String settlementName;
     private Long totalAmount;
     private LocalDate groupingAt;
