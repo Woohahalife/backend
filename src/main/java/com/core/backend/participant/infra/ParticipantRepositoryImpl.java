@@ -16,12 +16,17 @@ public class ParticipantRepositoryImpl implements ParticipantRepository {
 	private final JpaParticipantRepository repository;
 
 	@Override
-	public List<Participant> findAllBySettlementId(Long settlementId) {
+	public List<Participant> findAllBySettlementId(final Long settlementId) {
 		return repository.findAllBySettlementId(settlementId);
 	}
 
 	@Override
-	public List<Participant> saveAll(List<Participant> participants) {
+	public List<Participant> saveAll(final List<Participant> participants) {
 		return repository.saveAll(participants);
+	}
+
+	@Override
+	public boolean existsBySettlementIdAndUserId(final Long settlementId, final Long userId) {
+		return repository.existsBySettlementIdAndUserId(settlementId, userId);
 	}
 }

@@ -9,4 +9,6 @@ public interface ParticipantRepository {
 	List<Participant> findAllBySettlementId(Long settlementId);
 
 	List<Participant> saveAll(List<Participant> participants);
+
+	boolean existsBySettlementIdAndUserId(final Long settlementId, final Long userId);
 }
