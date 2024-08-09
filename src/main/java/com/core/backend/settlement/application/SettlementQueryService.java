@@ -59,8 +59,10 @@ public class SettlementQueryService {
 		List<Participant> allByUserId = participantRepository.findAllByUserId(userId);
 
 		Participant requestedParticipant = allByUserId.stream()
-			.filter(
-				participant -> participant.getSettlement().getSettlementStatus().equals(SettlementStatus.IN_PROGRESS))
+			.filter(participant -> {
+				SettlementStatus status = participant.getSettlement().getSettlementStatus();
+				return status.equals(SettlementStatus.IN_PROGRESS) || status.equals(SettlementStatus.OPEN);
+			})
 			.findFirst()
 			.orElse(null);
 
