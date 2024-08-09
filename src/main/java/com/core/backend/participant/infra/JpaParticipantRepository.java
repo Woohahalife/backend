@@ -11,4 +11,6 @@ public interface JpaParticipantRepository extends JpaRepository<Participant, Lon
 	List<Participant> findAllBySettlementId(final Long settlementId);
 
 	boolean existsBySettlementIdAndUserId(final Long settlementId, final Long userId);
+
+	List<Participant> findAllByUserId(final Long userId);
 }

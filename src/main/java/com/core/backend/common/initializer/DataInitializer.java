@@ -13,7 +13,7 @@ import com.core.backend.user.infra.encryption.AesAlgEncryptor;
 import jakarta.annotation.PostConstruct;
 
 @Component
-@Profile("local")
+@Profile("test")
 public class DataInitializer {
 
 	private final UserRepository userRepository;

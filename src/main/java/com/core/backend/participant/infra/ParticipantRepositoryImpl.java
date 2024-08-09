@@ -29,4 +29,9 @@ public class ParticipantRepositoryImpl implements ParticipantRepository {
 	public boolean existsBySettlementIdAndUserId(final Long settlementId, final Long userId) {
 		return repository.existsBySettlementIdAndUserId(settlementId, userId);
 	}
+
+	@Override
+	public List<Participant> findAllByUserId(final Long userId) {
+		return repository.findAllByUserId(userId);
+	}
 }
