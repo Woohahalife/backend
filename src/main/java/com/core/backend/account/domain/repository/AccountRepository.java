@@ -9,4 +9,8 @@ public interface AccountRepository {
 	boolean existByAccountNumber(final String accountNumber);
 
 	Account findByIdAndUserId(final Long accountId, final Long userId);
+
+	boolean existsByUserIdAndMainAccountTrue(final Long userId);
+
+	Account findByUserId(final Long userId);
 }

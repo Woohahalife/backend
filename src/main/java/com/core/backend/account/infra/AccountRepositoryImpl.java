@@ -30,4 +30,15 @@ public class AccountRepositoryImpl implements AccountRepository {
 		return repository.findByIdAndUserId(accountId, userId)
 			.orElseThrow(() -> new AccountException(ErrorCode.NOT_FOUND_ACCOUNT));
 	}
+
+	@Override
+	public boolean existsByUserIdAndMainAccountTrue(final Long userId) {
+		return repository.existsByUserIdAndMainAccountTrue(userId);
+	}
+
+	@Override
+	public Account findByUserId(final Long userId) {
+		return repository.findByUserId(userId)
+			.orElseThrow(() -> new AccountException(ErrorCode.NOT_FOUND_ACCOUNT));
+	}
 }
