@@ -43,7 +43,7 @@ public class GroupController {
 		CreateGroupResponse response =
 			groupCommandService.createGroup(authUser.getUserId(), GroupRegisterServiceRequest.from(request.getGroupName()));
 
-		return ResultResponse.success();
+		return ResultResponse.success(response);
 	}
 
 	@GetMapping("/groups")

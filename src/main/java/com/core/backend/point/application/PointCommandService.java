@@ -25,7 +25,7 @@ public class PointCommandService {
 	private final PointRepository pointRepository;
 
 	public PointConversionResponse convertBalanceToPoints(Long userId, PointConversionServiceRequest request) {
-		Account account = accountRepository.findByUserId(userId);
+		Account account = accountRepository.findByUserIdAndMainAccountTrue(userId);
 		validateBalance(request, account);
 
 		account.decreaseBalance(request.getAmount());
@@ -37,7 +37,7 @@ public class PointCommandService {
 	}
 
 	private void validateBalance(PointConversionServiceRequest request, Account account) {
-		if(!account.validateSufficientBalance(request.getAmount())) {
+		if(account.validateSufficientBalance(request.getAmount())) {
 			throw new AccountException(ErrorCode.INSUFFICIENT_BALANCE);
 		}
 	}

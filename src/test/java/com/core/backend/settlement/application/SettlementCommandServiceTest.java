@@ -52,6 +52,18 @@ class SettlementCommandServiceTest extends SettlementServiceTestFixture {
 		Assertions.assertThat(agreedParticipant.isAgreementStatus()).isTrue();
 	}
 
+	// @Test
+	// @DisplayName("모든 참여자가 동의할 경우 정산이 이루어진다.")
+	// void test() {
+	//     // given
+	//
+	//
+	//     // when
+	//
+	//
+	//     // then
+	// }
+
 	private SettlementRegisterServiceRequest getSettlementRegisterServiceRequest() {
 		SettlementParticipantServiceRequest request1 = new SettlementParticipantServiceRequest(
 			user1.getId(), user1.getName(), 10000L);

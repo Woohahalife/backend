@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.core.backend.common.exception.ErrorCode;
 import com.core.backend.group.domain.Group;
 import com.core.backend.group.domain.repository.GroupRepository;
 import com.core.backend.participant.domain.Participant;
@@ -17,6 +18,8 @@ import com.core.backend.settlement.application.dto.SettlementParticipantServiceR
 import com.core.backend.settlement.application.dto.SettlementRegisterServiceRequest;
 import com.core.backend.settlement.domain.Settlement;
 import com.core.backend.settlement.domain.SettlementRepository;
+import com.core.backend.settlement.exception.SettlementException;
+import com.core.backend.settlement.ui.dto.CompletedSettlementResponse;
 import com.core.backend.user.domain.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -58,7 +61,8 @@ public class SettlementCommandService {
 			));
 	}
 
-	private List<Participant> getParticipantList(Map<Long, SettlementParticipantServiceRequest> dataMap, Settlement settlement) {
+	private List<Participant> getParticipantList(Map<Long, SettlementParticipantServiceRequest> dataMap,
+		Settlement settlement) {
 		return userRepository.findAllById(new ArrayList<>(dataMap.keySet()))
 			.stream()
 			.map(user -> {
@@ -66,5 +70,31 @@ public class SettlementCommandService {
 				return Participant.of(data.getParticipantName(), data.getPaymentAmount(), user, settlement);
 			})
 			.toList();
+	}
+
+	public CompletedSettlementResponse processSettlement(Long userId, Long settlementId) {
+		//정산 조회
+		Settlement settlement = settlementRepository.findById(settlementId);
+		// 정산 참가자 추출
+		List<Participant> participants = participantRepository.findAllBySettlementId(settlementId);
+		validateAllParticipantAgree(participants);
+
+		// 각 참가자 point를 결제 금액만큼 감소
+		participants
+			.forEach(participant -> {
+				Long paymentAmount = participant.getPaymentAmount();
+				participant.getUser().getPoint().processSettlement(paymentAmount);
+				// TODO : 포인트가 부족한 경우 계좌로부터 환전 후 재결제 요청(현재는 예외만 던지도록 되어있음)
+			});
+
+		settlement.completeSettlement();
+
+		return CompletedSettlementResponse.from(settlement);
+	}
+
+	private void validateAllParticipantAgree(List<Participant> participants) {
+		if (!participants.stream().allMatch(Participant::isAgreementStatus)) {
+			throw new SettlementException(ErrorCode.PARTICIPANT_AGREEMENT_MISSING);
+		}
 	}
 }

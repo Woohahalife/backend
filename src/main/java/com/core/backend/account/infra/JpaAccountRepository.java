@@ -15,4 +15,6 @@ public interface JpaAccountRepository extends JpaRepository<Account, Long> {
 	boolean existsByUserIdAndMainAccountTrue(final Long userId);
 
 	Optional<Account> findByUserId(Long userId);
+
+	Optional<Account> findByUserIdAndMainAccountTrue(Long userId);
 }

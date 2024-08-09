@@ -17,8 +17,10 @@ public enum ErrorCode {
 	INSUFFICIENT_BALANCE(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "계좌 잔액이 충분하지 않습니다."),
 	INSUFFICIENT_POINT(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "보유 포인트가 충분하지 않습니다."),
 	ERROR_AMOUNT_TOO_LOW(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "환전 금액은 1만원 이상이어야 합니다"),
+	PARTICIPANT_AGREEMENT_MISSING(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), "참가자의 동의가 부족합니다."),
 
 	NOT_FOUND_ACCOUNT(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당하는 계좌 정보가 존재하지 않습니다"),
+	NOT_FOUND_MAIN_ACCOUNT(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "대표 결제계좌 정보가 존재하지 않습니다"),
 	NOT_FOUND_POINT_INFO(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당하는 포인트 정보가 존재하지 않습니다"),
 	NOT_FOUND_SETTLEMENT(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "해당하는 정산 정보가 존재하지 않습니다"),
 	BANK_IS_NOT_FOUND(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), "일치하는 은행이 없습니다."),
