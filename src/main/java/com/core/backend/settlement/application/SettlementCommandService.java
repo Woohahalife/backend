@@ -35,23 +35,12 @@ public class SettlementCommandService {
 	public void requestSettlement(Long userId, Long groupId, SettlementRegisterServiceRequest request) {
 		Group group = groupRepository.findById(groupId);
 
-		Map<Long, SettlementParticipantServiceRequest> dataMap = request.getParticipants()
-			.stream()
-			.collect(Collectors.toMap(
-				SettlementParticipantServiceRequest::getId,
-				Function.identity()
-			));
+		Map<Long, SettlementParticipantServiceRequest> dataMap = getDataMap(request);
 
 		Settlement settlement = Settlement.createSettlement(request, group);
 		settlementRepository.save(settlement);
 
-		List<Participant> participants = userRepository.findAllById(new ArrayList<>(dataMap.keySet()))
-			.stream()
-			.map(user -> {
-				SettlementParticipantServiceRequest data = dataMap.get(user.getId());
-				return Participant.of(data.getParticipantName(), data.getPaymentAmount(), user, settlement);
-			})
-			.toList();
+		List<Participant> participants = getParticipantList(dataMap, settlement);
 
 		participants.stream()
 			.filter(participant -> participant.getUser().getId().equals(userId))
@@ -61,4 +50,24 @@ public class SettlementCommandService {
 
 		// TODO : Settlement OPEN -> IN_PROGRESS 상태 변경 event 처리 필요
 	}
+
+	private Map<Long, SettlementParticipantServiceRequest> getDataMap(SettlementRegisterServiceRequest request) {
+		return request.getParticipants()
+			.stream()
+			.collect(Collectors.toMap(
+				SettlementParticipantServiceRequest::getId,
+				Function.identity()
+			));
+	}
+
+	private List<Participant> getParticipantList(Map<Long, SettlementParticipantServiceRequest> dataMap, Settlement settlement) {
+		return userRepository.findAllById(new ArrayList<>(dataMap.keySet()))
+			.stream()
+			.map(user -> {
+				SettlementParticipantServiceRequest data = dataMap.get(user.getId());
+				return Participant.of(data.getParticipantName(), data.getPaymentAmount(), user, settlement);
+			})
+			.toList();
+	}
+
 }

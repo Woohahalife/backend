@@ -8,17 +8,18 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.core.backend.common.mock.dto.SettlementRegisterMockRequest;
 import com.core.backend.settlement.ui.dto.SettlementParticipantRequest;
 import com.core.backend.settlement.ui.dto.SettlementParticipantResponse;
 import com.core.backend.settlement.ui.dto.SettlementRegisterRequest;
 
 public class RequestSettlementMockData {
 
-	private static final Map<Long, SettlementRegisterRequest> settlements = new HashMap<>();
+	private static final Map<Long, SettlementRegisterMockRequest> settlements = new HashMap<>();
 	private static final Map<Long, SettlementParticipantRequest> participantsMap = new HashMap<>();
 	private static final Map<Long, List<Long>> settlementParticipantsMap = new HashMap<>();
 
-	public static void saveSettlement(SettlementRegisterRequest request) {
+	public static void saveSettlement(SettlementRegisterMockRequest request) {
 		settlements.put(request.getId(), request);
 
 		List<Long> participantIds = new ArrayList<>();

@@ -10,5 +10,4 @@ public class SettlementParticipantRequest {
     private Long id;
     private String participantName;
     private Long paymentAmount;
-
 }

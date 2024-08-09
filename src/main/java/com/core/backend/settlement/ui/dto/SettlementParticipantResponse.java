@@ -1,5 +1,7 @@
 package com.core.backend.settlement.ui.dto;
 
+import com.core.backend.participant.domain.Participant;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,4 +16,13 @@ public class SettlementParticipantResponse {
     private String participantName;
     private Long paymentAmount;
     private boolean agreementStatus;
+
+    public static SettlementParticipantResponse from(Participant participant) {
+        return new SettlementParticipantResponse(
+            participant.getId(),
+            participant.getParticipantName(),
+            participant.getPaymentAmount(),
+            participant.isAgreementStatus()
+        );
+    }
 }

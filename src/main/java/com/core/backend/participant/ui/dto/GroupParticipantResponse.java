@@ -15,7 +15,7 @@ public class GroupParticipantResponse {
     private String name;
     private Long amount;
 
-	public static GroupParticipantResponse fromParticipant(Participant participant) {
+	public static GroupParticipantResponse from(Participant participant) {
 		return new GroupParticipantResponse(
 			participant.getId(),
 			participant.getParticipantName(),
