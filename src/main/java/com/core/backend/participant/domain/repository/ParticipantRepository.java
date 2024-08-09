@@ -13,4 +13,8 @@ public interface ParticipantRepository {
 	boolean existsBySettlementIdAndUserId(final Long settlementId, final Long userId);
 
 	List<Participant> findAllByUserId(final Long userId);
+
+	List<Participant> findByUserIdAndAgreementStatusFalse(final Long userId);
+
+	Participant findByIdAndUserId(Long participantId, Long userId);
 }

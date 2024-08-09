@@ -1,6 +1,7 @@
 package com.core.backend.participant.infra;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,4 +14,8 @@ public interface JpaParticipantRepository extends JpaRepository<Participant, Lon
 	boolean existsBySettlementIdAndUserId(final Long settlementId, final Long userId);
 
 	List<Participant> findAllByUserId(final Long userId);
+
+	List<Participant> findByUserIdAndAgreementStatusFalse(final Long userId);
+
+	Optional<Participant> findByIdAndUserId(final Long id, final Long userId);
 }
