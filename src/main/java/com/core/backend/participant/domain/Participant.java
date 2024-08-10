@@ -22,10 +22,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@SQLRestriction("status = 'ACTIVE'")
 @Table(name = "participant", uniqueConstraints = @UniqueConstraint(columnNames = {"settlement_id", "user_id"}))
+@SQLRestriction("status ='ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Participant {
+public class Participant extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
