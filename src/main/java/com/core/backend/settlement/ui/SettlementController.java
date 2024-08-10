@@ -74,7 +74,7 @@ public class SettlementController {
 	}
 
 	@PostMapping("/settlements/{settlementId}")
-	@Operation(summary = "요청받은 정산 내역 조회 api", description = "요청받은 정산 내역 정보를 조회한다.")
+	@Operation(summary = "정산 참여자 동의 여부에 따른 정산 프로세스 api", description = "정산 참여자 전부가 동의할 시 정산 프로세스를 이행한다.")
 	ResultResponse<CompletedSettlementResponse> processSettlement(
 		@Authenticated AuthUser authUser,
 		@PathVariable Long settlementId) {
