@@ -1,5 +1,6 @@
 package com.core.backend.account.infra;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,8 +16,7 @@ public interface JpaAccountRepository extends JpaRepository<Account, Long> {
 
 	boolean existsByUserIdAndMainAccountTrue(final Long userId);
 
-	Optional<Account> findByUserId(final Long userId);
+	List<Account> findAllByUserId(Long userId);
 
-	Optional<Account> findByUserIdAndMainAccountTrue(final Long userId);
-
+	List<Account> findAllByUserIdAndMainAccountTrue(Long userId);
 }

@@ -1,5 +1,6 @@
 package com.core.backend.account.application;
 
+import com.core.backend.account.domain.BankCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +29,7 @@ public class AccountCommandService {
 		validateDuplicateAccountNumber(request);
 
 		User user = userRepository.findById(userId);
-		Account account = Account.of(request.getBankName(), request.getAccountNumber(), user);
+		Account account = Account.of(BankCode.valueOfBankName(request.getBankName()), request.getAccountNumber(), user);
 
 		accountRepository.save(account);
 	}

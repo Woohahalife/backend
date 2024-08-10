@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -29,6 +30,7 @@ public class Account extends BaseEntity {
     @Column(name = "account_number", nullable = false)
     private String accountNumber;
 
+    @Setter
     @Column(name = "main_account", nullable = false)
     private boolean mainAccount;
 
@@ -36,20 +38,16 @@ public class Account extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Account(String bankName, String accountNumber, User user) {
-        this.bankCode = BankCode.valueOfBankName(bankName);
+    public Account(BankCode bankCode, String accountNumber, User user) {
+        this.bankCode = bankCode;
         this.balance = 10000000L; // 일괄적으로 1000만원 보유 (dummy data)
         this.accountNumber = accountNumber;
         this.mainAccount = false;
         this.user = user;
     }
 
-    public static Account of(String bankName, String accountNumber, User user) {
-        return new Account(bankName, accountNumber, user);
-    }
-
-    public void setMainAccount(boolean mark) {
-        this.mainAccount = mark;
+    public static Account of(BankCode bankCode, String accountNumber, User user) {
+        return new Account(bankCode, accountNumber, user);
     }
 
     public boolean validateSufficientBalance(Long amount) {
