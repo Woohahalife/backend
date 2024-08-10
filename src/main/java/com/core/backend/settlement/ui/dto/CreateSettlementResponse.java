@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateSettlementResponse {
 
-	private Long groupId;
+	private Long id;
 
 	public static CreateSettlementResponse from(Settlement settlement) {
 		return new CreateSettlementResponse(settlement.getId());
