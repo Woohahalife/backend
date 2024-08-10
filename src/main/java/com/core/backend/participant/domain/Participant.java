@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(name = "participant", uniqueConstraints = @UniqueConstraint(columnNames = {"settlement_id", "user_id"}))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Participant extends BaseEntity {
+public class Participant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
