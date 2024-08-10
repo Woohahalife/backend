@@ -35,7 +35,7 @@ public class PointController {
 	}
 
 	@PostMapping("/points")
-	@Operation(summary = "사용자 계좌로부터 포인트 환전 기능 api", description = "사용자의 계좌 잔액을 포인트로 환전할 수 있다.")
+	@Operation(summary = "사용자 계좌로부터 포인트 충전 기능 api", description = "사용자의 계좌 잔액을 포인트로 환전할 수 있다.")
 	public ResultResponse<PointConversionResponse> convertBalanceToPoints(
 		@Authenticated AuthUser authUser,
 		@RequestBody PointConversionRequest request) {
