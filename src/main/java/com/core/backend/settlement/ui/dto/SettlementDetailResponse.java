@@ -25,7 +25,7 @@ public class SettlementDetailResponse {
     private LocalDate groupingAt; // 모임 일자
     private LocalDate settlementAt; // 정산 완료 일자
     private String settlementPlace; // 모임 장소
-    private List<GroupParticipantResponse> participaints;
+    private List<GroupParticipantResponse> participants;
 
     public static SettlementDetailResponse of(Settlement settlement, List<Participant> participants) {
         return SettlementDetailResponse.builder()
@@ -35,7 +35,7 @@ public class SettlementDetailResponse {
             .groupingAt(settlement.getGroupingAt())
             .settlementAt(settlement.getSettlementAt())
             .settlementPlace(settlement.getSettlementPlace())
-            .participaints(
+            .participants(
                 participants.stream()
                 .map(GroupParticipantResponse::from)
                 .collect(Collectors.toList())
