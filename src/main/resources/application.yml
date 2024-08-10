@@ -23,3 +23,7 @@ springdoc:
   paths-to-match:
     - /**
 
+logging:
+  level:
+    root: INFO
+    com.core.backend: DEBUG
