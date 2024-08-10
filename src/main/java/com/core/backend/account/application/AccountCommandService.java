@@ -29,7 +29,13 @@ public class AccountCommandService {
 		validateDuplicateAccountNumber(request);
 
 		User user = userRepository.findById(userId);
-		Account account = Account.of(BankCode.valueOfBankName(request.getBankName()), request.getAccountNumber(), user);
+		Account account = null;
+		if(user.getAccounts().stream().anyMatch(Account::isMainAccount)) {
+			account = Account.of(BankCode.valueOfBankName(request.getBankName()), request.getAccountNumber(), user);
+		}else {
+			account = Account.of(BankCode.valueOfBankName(request.getBankName()), request.getAccountNumber(), user);
+			account.setMainAccount(true);
+		}
 
 		accountRepository.save(account);
 	}

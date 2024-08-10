@@ -18,16 +18,13 @@ import com.core.backend.user.domain.User;
 class AccountCommandServiceTest extends AccountServiceTestFixture {
 
 	@Test
-	@DisplayName("사용자의 결제 계좌를 등록한다.")
+	@DisplayName("사용자의 결제 계좌를 최초 등록한다.")
 	void registerAccountTest() {
 		// given
-		User user = User.of("test@email.com", "password", "test", "01011111111");
-		userRepository.save(user);
-
 		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.of("KB국민", "testNumber");
 
 		// when
-		accountCommandService.registerAccount(user.getId(), request);
+		accountCommandService.registerAccount(user1.getId(), request);
 
 		// then
 		Account testAccount = accountRepository.findAll().stream()
@@ -37,9 +34,9 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 
 		SoftAssertions.assertSoftly(softAssertions -> {
 			Assertions.assertThat(testAccount).isNotNull();
-			Assertions.assertThat(testAccount.getUser())
-				.extracting("id")
-				.isEqualTo(user.getId());
+			Assertions.assertThat(testAccount)
+				.extracting("id", "mainAccount")
+				.contains(1L, true);
 		});
 	}
 
