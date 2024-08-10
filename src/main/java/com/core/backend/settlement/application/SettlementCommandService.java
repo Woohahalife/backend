@@ -20,6 +20,7 @@ import com.core.backend.settlement.domain.Settlement;
 import com.core.backend.settlement.domain.SettlementRepository;
 import com.core.backend.settlement.exception.SettlementException;
 import com.core.backend.settlement.ui.dto.CompletedSettlementResponse;
+import com.core.backend.settlement.ui.dto.CreateSettlementResponse;
 import com.core.backend.user.domain.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class SettlementCommandService {
 	private final ParticipantRepository participantRepository;
 
 	// TODO : 리팩토링 우선순위
-	public void requestSettlement(Long userId, Long groupId, SettlementRegisterServiceRequest request) {
+	public CreateSettlementResponse requestSettlement(Long userId, Long groupId, SettlementRegisterServiceRequest request) {
 		Group group = groupRepository.findById(groupId);
 
 		Map<Long, SettlementParticipantServiceRequest> dataMap = getDataMap(request);
@@ -50,6 +51,8 @@ public class SettlementCommandService {
 			.forEach(Participant::markAsAgreed);
 
 		participantRepository.saveAll(participants);
+
+		return CreateSettlementResponse.from(settlement);
 	}
 
 	private Map<Long, SettlementParticipantServiceRequest> getDataMap(SettlementRegisterServiceRequest request) {

@@ -16,6 +16,7 @@ import com.core.backend.settlement.application.SettlementCommandService;
 import com.core.backend.settlement.application.SettlementQueryService;
 import com.core.backend.settlement.application.dto.SettlementRegisterServiceRequest;
 import com.core.backend.settlement.ui.dto.CompletedSettlementResponse;
+import com.core.backend.settlement.ui.dto.CreateSettlementResponse;
 import com.core.backend.settlement.ui.dto.RequestedSettlementResponse;
 import com.core.backend.settlement.ui.dto.SettlementDetailResponse;
 import com.core.backend.settlement.ui.dto.SettlementParticipantResponse;
@@ -44,12 +45,13 @@ public class SettlementController {
 
 	@PostMapping("/settlements/{groupId}/request")
 	@Operation(summary = "모임방 정산 요청(정산 생성) api", description = "새로운 정산을 요청(생성)한다.")
-	public ResultResponse<Void> requestSettlement(@Authenticated AuthUser authUser, @PathVariable Long groupId,
+	public ResultResponse<CreateSettlementResponse> requestSettlement(@Authenticated AuthUser authUser, @PathVariable Long groupId,
 		@RequestBody SettlementRegisterRequest request) {
-		settlementCommandService.requestSettlement(authUser.getUserId(), groupId,
+		CreateSettlementResponse response = settlementCommandService.requestSettlement(
+			authUser.getUserId(), groupId,
 			SettlementRegisterServiceRequest.of(request));
 
-		return ResultResponse.success();
+		return ResultResponse.success(response);
 	}
 
 	@GetMapping("/settlements/{settlementId}/participants")
