@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @Table(name = "user_group", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "group_id"}))
+@SQLRestriction("status = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserGroup extends BaseEntity {
 
