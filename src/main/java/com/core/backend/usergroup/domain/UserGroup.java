@@ -12,13 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Table(name = "user_group")
+@Table(name = "user_group", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "group_id"}))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserGroup extends BaseEntity {
 
