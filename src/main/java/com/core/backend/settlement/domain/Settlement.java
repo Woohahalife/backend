@@ -27,7 +27,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @Table(name = "settlement")
-@SQLRestriction("status = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Settlement extends BaseEntity {
 
