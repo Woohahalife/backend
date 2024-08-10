@@ -12,17 +12,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum BankCode {
 
-	KOOKMIN("004", "국민은행"),
-	WOORI("020", "우리은행"),
-	SHINHAN("088", "신한은행"),
-	HANA("081", "하나은행"),
-	NONGHYUP("011", "농협은행"),
-	INDUSTRIAL_BANK_OF_KOREA("003", "기업은행"),
-	KEB_HANA("081", "KEB하나은행"),
-	SUHYUP("007", "수협은행"),
-	POST_OFFICE("071", "우체국"),
+	NONGHYUP("011", "NH농협"),
+	KAKAO_BANK("090", "카카오뱅크"),
+	KOOKMIN("004", "KB국민"),
+	TOSS("092", "토스뱅크"),
+	SHINHAN("088", "신한"),
+	WOORI("020", "우리"),
+	INDUSTRIAL_BANK_OF_KOREA("003", "IBK기업"),
+	HANA("081", "하나"),
+	SAEMAUL("036", "새마을"),
+	BUSAN("034", "부산"),
 	K_BANK("089", "케이뱅크"),
-	KAKAO_BANK("090", "카카오뱅크");
+	SINHYUP("048", "신협"),
+	POST_OFFICE("071", "우체국"),
+	SUHYUP("007", "수협"),
+	JEJU("035", "제주");
 
 	private final String code;
 	private final String bankName;
@@ -44,4 +48,4 @@ public enum BankCode {
 
 	}
 
-}
+	}
