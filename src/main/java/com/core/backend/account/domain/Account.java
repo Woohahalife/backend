@@ -55,7 +55,7 @@ public class Account extends BaseEntity {
     }
 
     public void decreaseBalance(Long amount) {
-        if (amount == null || amount < 10000) { // TODO : 최소 환전 금액 기준 세우기(일단 1만원으로 설정함)
+        if (amount == null || amount < 10000) {
             throw new AccountException(ErrorCode.ERROR_AMOUNT_TOO_LOW);
         }
 
@@ -64,5 +64,9 @@ public class Account extends BaseEntity {
         }
 
         this.balance -= amount;
+    }
+
+    public void increaseBalance(Long amount) {
+        this.balance += amount;
     }
 }

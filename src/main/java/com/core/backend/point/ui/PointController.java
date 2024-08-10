@@ -47,4 +47,18 @@ public class PointController {
 
 		return ResultResponse.success(response);
 	}
+
+	@PostMapping("/points/exchange")
+	@Operation(summary = "사용자 포인트 환전 기능 api", description = "사용자의 보유 포인트를 계좌로 환전할 수있다.")
+	public ResultResponse<PointConversionResponse> exchangePointsToBalance(
+		@Authenticated AuthUser authUser,
+		@RequestBody PointConversionRequest request) {
+
+		PointConversionResponse response = pointCommandService.exchangePointsToBalance(
+			authUser.getUserId(),
+			PointConversionServiceRequest.from(request.getAmount())
+		);
+
+		return ResultResponse.success(response);
+	}
 }

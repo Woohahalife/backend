@@ -1,6 +1,7 @@
 package com.core.backend.point.domain;
 
 import com.core.backend.account.exception.AccountException;
+import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.common.exception.ErrorCode;
 import com.core.backend.user.domain.User;
 
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(name = "point")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Point {
+public class Point extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
