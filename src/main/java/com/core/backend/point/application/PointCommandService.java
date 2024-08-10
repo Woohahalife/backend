@@ -15,6 +15,8 @@ import com.core.backend.user.domain.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -25,7 +27,8 @@ public class PointCommandService {
 	private final PointRepository pointRepository;
 
 	public PointConversionResponse convertBalanceToPoints(Long userId, PointConversionServiceRequest request) {
-		Account account = accountRepository.findByUserIdAndMainAccountTrue(userId);
+		List<Account> accounts = accountRepository.findAllByUserIdAndMainAccountTrue(userId);
+		Account account = accounts.get(0);
 		validateBalance(request, account);
 
 		account.decreaseBalance(request.getAmount());

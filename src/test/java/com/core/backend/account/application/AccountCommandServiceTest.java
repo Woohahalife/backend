@@ -2,6 +2,7 @@ package com.core.backend.account.application;
 
 import static org.assertj.core.api.Assertions.*;
 
+import com.core.backend.account.domain.BankCode;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
@@ -48,7 +49,7 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 		User user = User.of("test@email.com", "password", "test", "01011111111");
 		userRepository.save(user);
 
-		Account account = Account.of("국민은행", "testNumber", user);
+		Account account = Account.of(BankCode.valueOfBankName("국민은행"), "testNumber", user);
 		accountRepository.save(account);
 
 		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.of("국민은행", "testNumber");

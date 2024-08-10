@@ -2,6 +2,7 @@ package com.core.backend.user.domain;
 
 import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.point.domain.Point;
+import com.core.backend.account.domain.Account;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -12,11 +13,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -44,6 +49,9 @@ public class User extends BaseEntity {
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Point point;
 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Account> accounts = new ArrayList<>();
+
 	@Builder
 	private User(String email,
 		String password,
@@ -61,6 +69,10 @@ public class User extends BaseEntity {
 		Point point = new Point(user);
 		user.mappingPoint(point);
 		return user;
+	}
+
+	public void addAccount(Account account) {
+		accounts.add(account);
 	}
 
 	private void mappingPoint(Point point) {

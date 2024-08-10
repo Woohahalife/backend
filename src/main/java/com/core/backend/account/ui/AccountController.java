@@ -1,11 +1,8 @@
 package com.core.backend.account.ui;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.core.backend.account.ui.dto.AccountResponse;
+import org.springframework.web.bind.annotation.*;
 
 import com.core.backend.account.application.AccountCommandService;
 import com.core.backend.account.application.AccountQueryService;
@@ -20,6 +17,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -27,6 +26,14 @@ public class AccountController {
 
 	private final AccountCommandService accountCommandService;
 	private final AccountQueryService accountQueryService;
+
+	@GetMapping("/accounts")
+	@Operation(summary = "계좌정보 조회 api", description = "사용자가 등록한 계좌 목록을 조회한다.")
+	public ResultResponse<List<AccountResponse>> getAllAccount(@Authenticated AuthUser authUser) {
+		log.info("[AccountController -> Called : getAllAccount] 사용자가 등록한 계좌 목록 조회 api 동작");
+		List<AccountResponse> responseList = accountQueryService.getAllAccount(authUser.getUserId());
+		return ResultResponse.success(responseList);
+	}
 
 	@PostMapping("/accounts/register")
 	@Operation(summary = "사용자 결제수단 등록 api", description = "사용자가 결제 및 정산에 사용할 계좌를 등록한다.")

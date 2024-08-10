@@ -10,6 +10,8 @@ import com.core.backend.common.exception.ErrorCode;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class AccountRepositoryImpl implements AccountRepository {
@@ -38,14 +40,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override
-	public Account findByUserId(final Long userId) {
-		return repository.findByUserId(userId)
-			.orElseThrow(() -> new AccountException(ErrorCode.NOT_FOUND_ACCOUNT));
+	public List<Account> findAllByUserId(final Long userId) {
+		return repository.findAllByUserId(userId);
 	}
 
 	@Override
-	public Account findByUserIdAndMainAccountTrue(Long userId) {
-		return repository.findByUserIdAndMainAccountTrue(userId)
-			.orElseThrow(() -> new AccountException(ErrorCode.NOT_FOUND_MAIN_ACCOUNT));
+	public List<Account> findAllByUserIdAndMainAccountTrue(Long userId) {
+		return repository.findAllByUserIdAndMainAccountTrue(userId);
 	}
 }

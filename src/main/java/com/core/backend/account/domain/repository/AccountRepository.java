@@ -3,6 +3,8 @@ package com.core.backend.account.domain.repository;
 import com.core.backend.account.domain.Account;
 import com.core.backend.common.entity.Status;
 
+import java.util.List;
+
 public interface AccountRepository {
 
 	Account save(final Account account);
@@ -13,7 +15,7 @@ public interface AccountRepository {
 
 	boolean existsByUserIdAndMainAccountTrue(final Long userId);
 
-	Account findByUserId(final Long userId);
+	List<Account> findAllByUserId(final Long userId);
 
-	Account findByUserIdAndMainAccountTrue(Long userId);
+	List<Account> findAllByUserIdAndMainAccountTrue(Long userId);
 }
