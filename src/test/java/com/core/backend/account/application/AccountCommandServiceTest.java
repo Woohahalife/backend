@@ -24,7 +24,7 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 		User user = User.of("test@email.com", "password", "test", "01011111111");
 		userRepository.save(user);
 
-		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.of("국민은행", "testNumber");
+		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.of("KB국민", "testNumber");
 
 		// when
 		accountCommandService.registerAccount(user.getId(), request);
@@ -49,10 +49,10 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 		User user = User.of("test@email.com", "password", "test", "01011111111");
 		userRepository.save(user);
 
-		Account account = Account.of(BankCode.valueOfBankName("국민은행"), "testNumber", user);
+		Account account = Account.of(BankCode.valueOfBankName("KB국민"), "testNumber", user);
 		accountRepository.save(account);
 
-		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.of("국민은행", "testNumber");
+		AccountRegisterServiceRequest request = AccountRegisterServiceRequest.of("KB국민", "testNumber");
 
 	    // when & then
 		assertThatThrownBy(() -> accountCommandService.registerAccount(user.getId(), request))
@@ -67,7 +67,7 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 		User user = User.of("test@email.com", "password", "test", "01011111111");
 		userRepository.save(user);
 
-		Account account = Account.of("국민은행", "testNumber", user);
+		Account account = Account.of(BankCode.KOOKMIN, "testNumber", user);
 		accountRepository.save(account);
 		// when
 		accountCommandService.deleteAccount(user.getId(), account.getId());

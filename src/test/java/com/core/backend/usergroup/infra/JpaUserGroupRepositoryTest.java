@@ -1,4 +1,4 @@
-package com.core.backend.usergroup.domain.infra;
+package com.core.backend.usergroup.infra;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -20,7 +20,7 @@ import com.core.backend.group.infra.JpaGroupRepository;
 import com.core.backend.user.domain.User;
 import com.core.backend.user.infra.database.JpaUserRepository;
 import com.core.backend.usergroup.domain.UserGroup;
-
+import com.core.backend.usergroup.domain.infra.JpaUserGroupRepository;
 
 class JpaUserGroupRepositoryTest extends RepositoryTestEnvSupport {
 
