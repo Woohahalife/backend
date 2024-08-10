@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @Table(name = "`group`")
-@SQLRestriction("status = 'ACTIVE'")
+@SQLRestriction("status ='ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Group extends BaseEntity {
 
