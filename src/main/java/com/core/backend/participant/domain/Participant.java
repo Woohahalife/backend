@@ -1,7 +1,5 @@
 package com.core.backend.participant.domain;
 
-import org.hibernate.annotations.SQLRestriction;
-
 import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.settlement.domain.Settlement;
 import com.core.backend.user.domain.User;

@@ -22,8 +22,3 @@ springdoc:
     display-request-duration: true
   paths-to-match:
     - /**
-
-logging:
-  level:
-    root: INFO
-    com.core.backend: DEBUG
