@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.hibernate.annotations.SQLRestriction;
 
+import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.group.domain.Group;
 import com.core.backend.settlement.application.dto.SettlementRegisterServiceRequest;
 
@@ -28,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "settlement")
 @SQLRestriction("status = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Settlement {
+public class Settlement extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

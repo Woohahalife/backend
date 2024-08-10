@@ -28,6 +28,10 @@ public class PointCommandService {
 
 	public PointConversionResponse convertBalanceToPoints(Long userId, PointConversionServiceRequest request) {
 		List<Account> accounts = accountRepository.findAllByUserIdAndMainAccountTrue(userId);
+		if(accounts.isEmpty()) {
+			throw new AccountException(ErrorCode.NOT_FOUND_MAIN_ACCOUNT);
+		}
+
 		Account account = accounts.get(0);
 		validateBalance(request, account);
 		account.decreaseBalance(request.getAmount());
