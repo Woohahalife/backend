@@ -1,10 +1,24 @@
 package com.core.backend.account.domain;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
 import com.core.backend.account.exception.AccountException;
 import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.common.exception.ErrorCode;
 import com.core.backend.user.domain.User;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +27,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Table(name = "account")
+@SQLRestriction("status = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Account extends BaseEntity {
 

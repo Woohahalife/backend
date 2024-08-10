@@ -1,5 +1,7 @@
 package com.core.backend.point.domain;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import com.core.backend.account.exception.AccountException;
 import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.common.exception.ErrorCode;
@@ -20,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @Table(name = "point")
+@SQLRestriction("status = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Point extends BaseEntity {
 

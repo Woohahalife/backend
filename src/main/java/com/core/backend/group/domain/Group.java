@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.settlement.domain.Settlement;
 import com.core.backend.settlement.domain.SettlementStatus;
@@ -27,6 +29,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @Table(name = "`group`")
+@SQLRestriction("status = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Group extends BaseEntity {
 

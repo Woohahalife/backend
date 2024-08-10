@@ -2,6 +2,8 @@ package com.core.backend.settlement.domain;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import com.core.backend.group.domain.Group;
 import com.core.backend.settlement.application.dto.SettlementRegisterServiceRequest;
 
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @Table(name = "settlement")
+@SQLRestriction("status = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Settlement {
 

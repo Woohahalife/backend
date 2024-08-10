@@ -108,9 +108,8 @@ public class GetGroupSettlementDetailMockData {
 		for (int i = 0; i < members.size(); i++) {
 			GroupParticipantResponse member = members.get(i);
 			long amount = baseAmount + (i < remainder ? 1 : 0);
-			responses.add(new GroupParticipantResponse(member.getId(), member.getName(), amount));
+			responses.add(new GroupParticipantResponse(member.getId(), member.getParticipantName(), amount));
 		}
 		return responses;
 	}
-
 }
