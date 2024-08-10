@@ -1,6 +1,5 @@
 package com.core.backend.account.domain;
 
-import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
 import com.core.backend.account.exception.AccountException;

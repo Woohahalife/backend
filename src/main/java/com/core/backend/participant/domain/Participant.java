@@ -2,6 +2,7 @@ package com.core.backend.participant.domain;
 
 import org.hibernate.annotations.SQLRestriction;
 
+import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.settlement.domain.Settlement;
 import com.core.backend.user.domain.User;
 
@@ -24,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "participant", uniqueConstraints = @UniqueConstraint(columnNames = {"settlement_id", "user_id"}))
 @SQLRestriction("status = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Participant {
+public class Participant extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
