@@ -64,6 +64,10 @@ public class SettlementServiceTestFixture extends ServiceTestEnvSupport {
 		user3 = User.of("string3", "string", "string", "01011113333");
 		userRepository.saveAll(List.of(user1, user2, user3));
 
+		user1.getPoint().increasePoint(100000L);
+		user2.getPoint().increasePoint(100000L);
+		user3.getPoint().increasePoint(100000L);
+
 		group1 = Group.of("group1");
 		group1.addUserToGroup(user1);
 		group1.addUserToGroup(user2);

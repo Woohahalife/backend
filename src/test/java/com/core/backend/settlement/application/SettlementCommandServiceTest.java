@@ -7,11 +7,14 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.core.backend.group.domain.Group;
 import com.core.backend.participant.domain.Participant;
 import com.core.backend.settlement.SettlementServiceTestFixture;
 import com.core.backend.settlement.application.dto.SettlementParticipantServiceRequest;
 import com.core.backend.settlement.application.dto.SettlementRegisterServiceRequest;
 import com.core.backend.settlement.domain.Settlement;
+import com.core.backend.settlement.domain.SettlementStatus;
+import com.core.backend.settlement.exception.SettlementException;
 
 class SettlementCommandServiceTest extends SettlementServiceTestFixture {
 
@@ -52,17 +55,77 @@ class SettlementCommandServiceTest extends SettlementServiceTestFixture {
 		Assertions.assertThat(agreedParticipant.isAgreementStatus()).isTrue();
 	}
 
-	// @Test
-	// @DisplayName("모든 참여자가 동의할 경우 정산이 이루어진다.")
-	// void test() {
-	//     // given
-	//
-	//
-	//     // when
-	//
-	//
-	//     // then
-	// }
+	@Test
+	@DisplayName("모든 참여자가 동의할 경우 정산이 이루어진다.")
+	void processSettlementTest() {
+	    // given
+		Settlement settlement = createSettlement(
+			"testSettlement",
+			30000L,
+			LocalDate.now(),
+			LocalDate.now(),
+			"place",
+			group1);
+		settlementRepository.save(settlement);
+
+		Participant participant1 = Participant.of(user1.getName(), 10000L, user1, settlement);
+		Participant participant2 = Participant.of(user2.getName(), 10000L, user2, settlement);
+		Participant participant3 = Participant.of(user3.getName(), 10000L, user3, settlement);
+		List<Participant> participants = List.of(participant1, participant2, participant3);
+		participantRepository.saveAll(participants);
+		participants.forEach(Participant::markAsAgreed);
+
+		// when
+		settlementCommandService.processSettlement(user1.getId(), settlement.getId());
+
+	    // then
+		Assertions.assertThat(settlement.getSettlementStatus()).isEqualTo(SettlementStatus.SUCCESS);
+	}
+
+	@Test
+	@DisplayName("모든 참여자가 동의할 경우 정산이 이루어진다.")
+	void processSettlementExceptionTest() {
+		// given
+		Settlement settlement = createSettlement(
+			"testSettlement",
+			30000L,
+			LocalDate.now(),
+			LocalDate.now(),
+			"place",
+			group1);
+		settlementRepository.save(settlement);
+
+		Participant participant1 = Participant.of(user1.getName(), 10000L, user1, settlement);
+		Participant participant2 = Participant.of(user2.getName(), 10000L, user2, settlement);
+		Participant participant3 = Participant.of(user3.getName(), 10000L, user3, settlement);
+		participantRepository.saveAll(List.of(participant1, participant2, participant3));
+		participant1.markAsAgreed();
+		participant2.markAsAgreed();
+
+		// when & then
+		Assertions.assertThatThrownBy(() -> settlementCommandService.processSettlement(user1.getId(), settlement.getId()))
+			.isInstanceOf(SettlementException.class)
+			.extracting("errorCode.message")
+			.isEqualTo("참가자의 동의가 부족합니다.");
+	}
+
+	private Settlement createSettlement(
+		String name,
+		Long totalAmount,
+		LocalDate groupingAt,
+		LocalDate settlementAt,
+		String settlementPlace,
+		Group group) {
+		return Settlement.builder()
+			.settlementName(name)
+			.totalAmount(totalAmount)
+			.settlementStatus(SettlementStatus.OPEN)
+			.groupingAt(groupingAt)
+			.settlementAt(settlementAt)
+			.settlementPlace(settlementPlace)
+			.group(group)
+			.build();
+	}
 
 	private SettlementRegisterServiceRequest getSettlementRegisterServiceRequest() {
 		SettlementParticipantServiceRequest request1 = new SettlementParticipantServiceRequest(

@@ -7,12 +7,12 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.core.backend.account.AccountServiceTestFixture;
 import com.core.backend.account.application.dto.AccountRegisterServiceRequest;
 import com.core.backend.account.domain.Account;
 import com.core.backend.account.exception.AccountException;
+import com.core.backend.common.entity.Status;
 import com.core.backend.user.domain.User;
 
 class AccountCommandServiceTest extends AccountServiceTestFixture {
@@ -62,14 +62,17 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 
 	@Test
 	@DisplayName("사용자의 계좌를 삭제할 수 있다.")
-	void test() {
-	    // given
+	void deleteAccountTest() {
+		// given
+		User user = User.of("test@email.com", "password", "test", "01011111111");
+		userRepository.save(user);
 
+		Account account = Account.of("국민은행", "testNumber", user);
+		accountRepository.save(account);
+		// when
+		accountCommandService.deleteAccount(user.getId(), account.getId());
 
-	    // when
-
-
-	    // then
+		// then
+		assertThat(account.getStatus()).isEqualTo(Status.DELETE);
 	}
-
 }
