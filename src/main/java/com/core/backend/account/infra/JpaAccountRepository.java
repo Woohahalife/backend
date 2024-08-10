@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.core.backend.account.domain.Account;
+import com.core.backend.common.entity.Status;
 
 public interface JpaAccountRepository extends JpaRepository<Account, Long> {
 
@@ -14,7 +15,8 @@ public interface JpaAccountRepository extends JpaRepository<Account, Long> {
 
 	boolean existsByUserIdAndMainAccountTrue(final Long userId);
 
-	Optional<Account> findByUserId(Long userId);
+	Optional<Account> findByUserId(final Long userId);
 
-	Optional<Account> findByUserIdAndMainAccountTrue(Long userId);
+	Optional<Account> findByUserIdAndMainAccountTrue(final Long userId);
+
 }

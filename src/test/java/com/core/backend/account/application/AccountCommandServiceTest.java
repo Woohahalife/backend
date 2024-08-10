@@ -59,4 +59,16 @@ class AccountCommandServiceTest extends AccountServiceTestFixture {
 			.hasMessage("중복되는 계좌번호 입니다.");
 	}
 
+	@Test
+	@DisplayName("사용자의 계좌를 삭제할 수 있다.")
+	void test() {
+	    // given
+
+
+	    // when
+
+
+	    // then
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.core.backend.account.ui;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -52,5 +53,13 @@ public class AccountController {
 		AccountMarkResponse response = accountCommandService.unsetAccountMark(authUser.getUserId(), accountId);
 
 		return ResultResponse.success(response);
+	}
+
+	@DeleteMapping("/accounts/{accountId}/delete")
+	@Operation(summary = "사용자 계좌 삭제 api", description = "사용자가 보유한 계좌를 삭제할 수 있다.")
+	public ResultResponse<Void> deleteAccount(@Authenticated AuthUser authUser, @PathVariable Long accountId) {
+		accountCommandService.deleteAccount(authUser.getUserId(), accountId);
+
+		return ResultResponse.success();
 	}
 }

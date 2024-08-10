@@ -39,12 +39,16 @@ public abstract class BaseEntity {
 		status = Status.ACTIVE;
 	}
 
+	public void delete() {
+		status = Status.DELETE;
+	}
+
 	public void softDelete() {
 
 		if (isDeleted()) {
 			throw new GlobalException(ErrorCode.ALREADY_DELETED_DATA);
 		}
 
-		activate();
+		delete();
 	}
 }

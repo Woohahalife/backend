@@ -1,6 +1,7 @@
 package com.core.backend.account.domain;
 
 import com.core.backend.account.exception.AccountException;
+import com.core.backend.common.entity.BaseEntity;
 import com.core.backend.common.exception.ErrorCode;
 import com.core.backend.user.domain.User;
 import jakarta.persistence.*;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(name = "account")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Account {
+public class Account extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

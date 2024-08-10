@@ -1,6 +1,7 @@
 package com.core.backend.account.domain.repository;
 
 import com.core.backend.account.domain.Account;
+import com.core.backend.common.entity.Status;
 
 public interface AccountRepository {
 

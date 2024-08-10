@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.core.backend.account.domain.Account;
 import com.core.backend.account.domain.repository.AccountRepository;
 import com.core.backend.account.exception.AccountException;
+import com.core.backend.common.entity.Status;
 import com.core.backend.common.exception.ErrorCode;
 
 import lombok.RequiredArgsConstructor;
