@@ -30,7 +30,6 @@ public class PointCommandService {
 		List<Account> accounts = accountRepository.findAllByUserIdAndMainAccountTrue(userId);
 		Account account = accounts.get(0);
 		validateBalance(request, account);
-
 		account.decreaseBalance(request.getAmount());
 
 		Point point = pointRepository.findByUserId(userId);
@@ -43,5 +42,17 @@ public class PointCommandService {
 		if(account.validateSufficientBalance(request.getAmount())) {
 			throw new AccountException(ErrorCode.INSUFFICIENT_BALANCE);
 		}
+	}
+
+	public PointConversionResponse exchangePointsToBalance(Long userId, PointConversionServiceRequest request) {
+		Point point = pointRepository.findByUserId(userId);
+		point.decreasePoint(request.getAmount());
+
+		List<Account> accounts = accountRepository.findAllByUserIdAndMainAccountTrue(userId);
+		Account account = accounts.get(0);
+		validateBalance(request, account);
+		account.increaseBalance(request.getAmount());
+
+		return PointConversionResponse.of(account.getBalance(), point.getPoint());
 	}
 }

@@ -1,6 +1,7 @@
 package com.core.backend.account;
 
 import com.core.backend.user.domain.User;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,13 +40,12 @@ public class AccountServiceTestFixture extends ServiceTestEnvSupport {
 		em.createNativeQuery("ALTER TABLE \"user\" AUTO_INCREMENT = 1;")
 			.executeUpdate();
 		em.createNativeQuery("ALTER TABLE account AUTO_INCREMENT = 1;")
-		.executeUpdate();
+			.executeUpdate();
 
-		
 		user1 = User.of("string1", "string", "string", "01011111111");
 		userRepository.saveAll(List.of(user1));
 
 		em.flush();
 		em.clear();
-		}
+	}
 }

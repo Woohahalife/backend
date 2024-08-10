@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GroupParticipantResponse {
     private Long id;
-    private String name;
-    private Long amount;
+	private String participantName;
+	private Long paymentAmount;
 
 	public static GroupParticipantResponse from(Participant participant) {
 		return new GroupParticipantResponse(
