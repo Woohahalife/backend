@@ -87,7 +87,6 @@ public class SettlementCommandService {
 			.forEach(participant -> {
 				Long paymentAmount = participant.getPaymentAmount();
 				participant.getUser().getPoint().processSettlement(paymentAmount);
-				// TODO : 포인트가 부족한 경우 계좌로부터 환전 후 재결제 요청(현재는 예외만 던지도록 되어있음)
 			});
 
 		settlement.completeSettlement();
